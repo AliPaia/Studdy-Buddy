@@ -22,7 +22,7 @@
 ### *Study Buddy*
 
 ## Description :
-
+Study buddy ranker to help determine on the spot thought partners when you find yourself stuck on a problem
 
 ## Working :
 
