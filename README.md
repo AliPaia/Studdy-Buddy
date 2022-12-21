@@ -37,7 +37,7 @@ Study buddy ranker to help determine on the spot thought partners when you find 
 
 
 ## Project Outline :
-[Link to PowerPoint Presentation](https://docs.google.com/presentation/d/1gnFSSOc5K2J--LOBNMothA58R_RVDVpnhloqP7Q0dlU/edit?usp=sharing)
+[Link to PowerPoint Presentation](https://docs.google.com/presentation/d/1gnFSSOc5K2J--LOBNMothA58R_RVDVpnhloqP7Q0dlU/edit?usp=sharing) -
 
 ## Wireframe :
 [Link to Wireframe](https://www.figma.com/file/ecH6V9VV64Y8h0Zg77uk92/Untitled?node-id=0%3A1&t=cGEf3qLriIdzacSN-1)
