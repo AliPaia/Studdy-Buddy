@@ -1,1 +1,20 @@
-
+<section class="container text-center">
+    <h2>Welcome!</h2>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, voluptatem voluptates quas ipsam minus hic
+        animi tempore possimus cum saepe ratione atque consequatur eaque, similique et, nam mollitia laborum asperiores?
+    </p>
+</section>
+{{#if loggedIn}}
+<section class="container text-center">
+    <select class="form-select" aria-label="Default select example">
+        <option selected>Open this select menu</option>
+        <option value="js">Vanilla JS</option>
+        <option value="mysql">mySQL</option>
+        <option value="node">Node.JS</option>
+        <option value="express">Express</option>
+        <option value="oop">OOP</option>
+    </select>
+    <button>Find a buddy</button>
+</section>
+{{/if}}
