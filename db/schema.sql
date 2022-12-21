@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS buddy_db;
+CREATE DATABASE buddy_db;
