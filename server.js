@@ -46,19 +46,19 @@ app.use(routes);
 const httpServer = createServer(app);
 const io = new Server(httpServer);
 
-io.on("connection", function (socket) {
-  socket.on("userJoin", function (data) {
+io.on('connection', function (socket) {
+  socket.on('userJoin', function (data) {
     this.username = data;
-    socket.broadcast.emit("userJoin", data);
+    socket.broadcast.emit('userJoin', data);
   });
 
-  socket.on("chatMessage", function (data) {
+  socket.on('chatMessage', function (data) {
     data.username = this.username;
-    socket.broadcast.emit("chatMessage", data);
+    socket.broadcast.emit('chatMessage', data);
   });
 
-  socket.on("disconnect", function (data) {
-    socket.broadcast.emit("userLeave", this.username);
+  socket.on('disconnect', function (data) {
+    socket.broadcast.emit('userLeave', this.username);
   });
 });
 

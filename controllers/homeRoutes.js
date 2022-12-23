@@ -29,7 +29,7 @@ router.get('/chat', async (req, res) => {
   try {
     res.render('chat', {
       loggedIn: req.session.loggedIn,
-    })
+    });
   } catch (err) {
     res.status(500).json(err);
   }
