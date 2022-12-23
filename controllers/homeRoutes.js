@@ -3,11 +3,11 @@ const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
-   res.render('homepage', {
-    // just for implementations, change later
-    loggedIn: true,
-    userActive: true,
-   });
+    res.render('homepage', {
+      // just for implementations, change later
+      loggedIn: true,
+      userActive: true,
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -15,15 +15,14 @@ router.get('/', async (req, res) => {
 
 router.get('/assessment', async (req, res) => {
   try {
-   res.render('assessment', {
-    // just for implementations, change later
-    loggedIn: true,
-   });
+    res.render('assessment', {
+      // just for implementations, change later
+      loggedIn: true,
+    });
   } catch (err) {
     res.status(500).json(err);
   }
 });
-
 
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
@@ -33,6 +32,5 @@ router.get('/login', (req, res) => {
 
   res.render('login');
 });
-
 
 module.exports = router;
