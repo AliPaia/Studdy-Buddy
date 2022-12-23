@@ -6,8 +6,8 @@ router.get('/', async (req, res) => {
   try {
     res.render('homepage', {
       // just for implementations, change later
-      loggedIn: true,
-      userActive: true,
+      loggedIn: req.session.loggedIn,
+      userActive: req.session.userActive,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -18,7 +18,17 @@ router.get('/assessment', async (req, res) => {
   try {
     res.render('assessment', {
       // just for implementations, change later
-      loggedIn: true,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/chat', async (req, res) => {
+  try {
+    res.render('chat', {
+      loggedIn: req.session.loggedIn,
     });
   } catch (err) {
     res.status(500).json(err);
