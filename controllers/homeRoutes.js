@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const withAuth = require('../utils/auth');
+const { User, Score } = require('../models');
 
 router.get('/', async (req, res) => {
   try {
@@ -7,17 +8,6 @@ router.get('/', async (req, res) => {
       // just for implementations, change later
       loggedIn: true,
       userActive: true,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-router.get('/assessment', async (req, res) => {
-  try {
-    res.render('assessment', {
-      // just for implementations, change later
-      loggedIn: true,
     });
   } catch (err) {
     res.status(500).json(err);
