@@ -5,9 +5,8 @@ const { User, Score } = require('../models');
 router.get('/', async (req, res) => {
   try {
     res.render('homepage', {
-      // just for implementations, change later
-      loggedIn: true,
-      userActive: true,
+      loggedIn: req.session.loggedIn,
+      userActive: req.session.userActive,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -17,8 +16,26 @@ router.get('/', async (req, res) => {
 router.get('/assessment', async (req, res) => {
   try {
     res.render('assessment', {
-      // just for implementations, change later
-      loggedIn: true,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/chat', async (req, res) => {
+  // gets random user for testing purpose
+  const userId = Math.floor(Math.random() * 5 + 1);
+  const userActive = req.session.userActive;
+
+  try {
+    const { username } = await User.findByPk(userId, { raw: true });
+
+    res.render('chat', {
+      loggedIn: req.session.loggedIn,
+      // update values
+      userId,
+      username,
     });
   } catch (err) {
     res.status(500).json(err);

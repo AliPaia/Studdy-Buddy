@@ -1,0 +1,28 @@
+<section id='buddy-card' class='container text-center'>
+  <section class='text-center'>
+    <p>Currently Connected Buddy:
+      <span id='buddy-name' data-buddyId='null'>None</span></p>
+    <p>Studdy Buddy Subject:
+      <span id='buddy-subject' data-buddySubject='null'>None</span></p>
+  </section>
+</section>
+
+<section
+  class='container'
+  id='chat'
+  data-user-id='{{userId}}'
+  data-username='{{username}}'
+>
+  <ul class='messages'></ul>
+  <form>
+    <input type='text' class='input' autocomplete='off' autofocus />
+    <button>Send</button>
+  </form>
+</section>
+
+<script
+  src='https://cdn.socket.io/4.5.4/socket.io.min.js'
+  integrity='sha384-/KNQL8Nu5gCHLqwqfQjA689Hhoqgi2S84SNUxC3roTe4EhJ9AfLkp8QiQcU8AMzI'
+  crossorigin='anonymous'
+></script>
+<script src='./js/chat.js'></script>
