@@ -1,6 +1,29 @@
+:root {
+  --primary-color: #06283d;
+  --secondary-color: #256d85;
+  --tertiary-color: #47b5ff;
+  --quaternary-color: #dff6ff;
+  --border-styles: 5px solid var(--secondary-color);
+  --bs-card-bg: #06283d;
+}
+
 body {
   margin: 0;
   font-family: sans-serif;
+}
+
+header {
+  margin: 5px;
+  border: var(--border-styles);
+}
+
+#buddy-card {
+  margin-bottom: 5px;
+  border: var(--border-styles);
+}
+
+#chat {
+  border: var(--border-styles);
 }
 
 #chat form {
@@ -42,6 +65,7 @@ body {
   margin: 0;
   padding: 0;
   margin-bottom: 3rem;
+  list-style: none;
 }
 
 #chat .messages li {

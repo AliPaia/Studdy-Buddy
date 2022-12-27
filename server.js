@@ -8,6 +8,7 @@ const { createServer } = require('http');
 const { Server } = require('socket.io');
 
 const sequelize = require('./config/connection');
+const { initSocket } = require('./config/socket.js');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
@@ -43,25 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
-const httpServer = createServer(app);
-const io = new Server(httpServer);
-
-io.on('connection', function (socket) {
-  socket.on('userJoin', function (data) {
-    this.username = data;
-    socket.broadcast.emit('userJoin', data);
-  });
-
-  socket.on('chatMessage', function (data) {
-    data.username = this.username;
-    socket.broadcast.emit('chatMessage', data);
-  });
-
-  socket.on('disconnect', function (data) {
-    socket.broadcast.emit('userLeave', this.username);
-  });
-});
-
 sequelize.sync({ force: false }).then(() => {
-  httpServer.listen(PORT, () => console.log('Now listening'));
+  const httpServer = app.listen(PORT, () => console.log('Now listening'));
+  initSocket(new Server(httpServer));
 });

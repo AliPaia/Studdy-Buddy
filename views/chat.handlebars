@@ -1,4 +1,35 @@
-<section class='container' id='chat'>
+<section id='buddy-card' class='container text-center'>
+  <section class='text-center'>
+    <p>Currently Connected Buddy:
+      {{#if foundBuddy}}
+        <span
+          id='buddy-name'
+          data-buddy-id='{{buddyId}}'
+        >{{buddyUsername}}</span>
+      {{else}}
+        <span id='buddy-name' data-buddy-id='null'>None</span>
+      {{/if}}
+    </p>
+    <p>Studdy Buddy Subject:
+      {{#if foundBuddy}}
+        <span
+          id='buddy-subject'
+          data-buddy-subject='{{subject}}'
+        >{{subject}}</span>
+      {{else}}
+        <span id='buddy-subject' data-buddy-subject='null'>None</span>
+      {{/if}}
+    </p>
+  </section>
+</section>
+
+<section
+  class='container'
+  id='chat'
+  data-user-id='{{id}}'
+  data-username='{{username}}'
+  data-is-active='{{isActive}}'
+>
   <ul class='messages'></ul>
   <form>
     <input type='text' class='input' autocomplete='off' autofocus />

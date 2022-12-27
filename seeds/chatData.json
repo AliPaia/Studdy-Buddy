@@ -1,0 +1,27 @@
+[
+  {
+    "subject": "vanillaJs",
+    "subjectScore": "1",
+    "userId": "1"
+  },
+  {
+    "subject": "oop",
+    "subjectScore": "1",
+    "userId": "2"
+  },
+  {
+    "subject": "express",
+    "subjectScore": "1",
+    "userId": "3"
+  },
+  {
+    "subject": "nodeJs",
+    "subjectScore": "1",
+    "userId": "4"
+  },
+  {
+    "subject": "mySql",
+    "subjectScore": "1",
+    "userId": "5"
+  }
+]
