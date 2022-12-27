@@ -1,17 +1,31 @@
 <section id='buddy-card' class='container text-center'>
   <section class='text-center'>
     <p>Currently Connected Buddy:
-      <span id='buddy-name' data-buddyId='null'>None</span></p>
+      {{#if foundBuddy}}
+        <span id='buddy-name' data-buddy-id='{{buddyId}}'>{{buddyUsername}}</span>
+      {{else}}
+        <span id='buddy-name' data-buddy-id='null'>None</span>
+      {{/if}}
+    </p>
     <p>Studdy Buddy Subject:
-      <span id='buddy-subject' data-buddySubject='null'>None</span></p>
+      {{#if foundBuddy}}
+        <span
+          id='buddy-subject'
+          data-buddy-subject='{{subject}}'
+        >{{subject}}</span>
+      {{else}}
+        <span id='buddy-subject' data-buddy-subject='null'>None</span>
+      {{/if}}
+    </p>
   </section>
 </section>
 
 <section
   class='container'
   id='chat'
-  data-user-id='{{userId}}'
+  data-user-id='{{id}}'
   data-username='{{username}}'
+  data-is-active='{{isActive}}'
 >
   <ul class='messages'></ul>
   <form>
