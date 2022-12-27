@@ -2,7 +2,10 @@
   <section class='text-center'>
     <p>Currently Connected Buddy:
       {{#if foundBuddy}}
-        <span id='buddy-name' data-buddy-id='{{buddyId}}'>{{buddyUsername}}</span>
+        <span
+          id='buddy-name'
+          data-buddy-id='{{buddyId}}'
+        >{{buddyUsername}}</span>
       {{else}}
         <span id='buddy-name' data-buddy-id='null'>None</span>
       {{/if}}

@@ -32,19 +32,19 @@ router.get('/chat', async (req, res) => {
   try {
     const userData = await User.findByPk(userId, {
       attributes: { exclude: 'password' },
-      include: [
-        { model: Score, attributes: [subject] },
-        { model: Chat }
-      ],
+      include: [{ model: Score, attributes: [subject] }, { model: Chat }],
       raw: true,
       nest: true,
     });
 
-    await Chat.update({ isOpen: true }, {
-      where: {
-        userId: userData.id,
+    await Chat.update(
+      { isOpen: true },
+      {
+        where: {
+          userId: userData.id,
+        },
       }
-    });
+    );
 
     res.render('chat', {
       loggedIn: req.session.loggedIn,
@@ -72,10 +72,8 @@ router.get('/buddychat', async (req, res) => {
 
     if (isActive) {
       const chatData = await searchChat(userData);
-
-
     }
-    
+
     res.render('chat', {
       loggedIn: req.session.loggedIn,
       // update values

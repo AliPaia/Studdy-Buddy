@@ -32,7 +32,10 @@ const initSocket = (io) => {
 
     socket.on('disconnect', async (data) => {
       socket.broadcast.to(roomId).emit('userLeave', { username });
-      const chatData = await Chat.update({ isOpen: false }, { where: { userId } });
+      const chatData = await Chat.update(
+        { isOpen: false },
+        { where: { userId } }
+      );
     });
   });
 };

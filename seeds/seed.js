@@ -3,7 +3,7 @@ const { User, Score, Chat } = require('../models');
 
 const userData = require('./userData.json');
 const scoreData = require('./scoreData.json');
-const chatData = require('./chatData.json')
+const chatData = require('./chatData.json');
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });

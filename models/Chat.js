@@ -14,10 +14,18 @@ Chat.init(
     subject: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        isIn: [['vanillaJs', 'mySql', 'nodeJs', 'express', 'oop']],
+      },
+      defaultValue: 'vanillaJs',
     },
     subjectScore: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      validate: {
+        isIn: [[1, 2, 3, 4, 5]],
+      },
+      defaultValue: '1',
     },
     isOpen: {
       type: DataTypes.BOOLEAN,
