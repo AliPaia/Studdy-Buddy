@@ -17,6 +17,11 @@ header {
   border: var(--border-styles);
 }
 
+#nav-btn {
+  display: flex;
+  justify-content: center;
+}
+
 #buddy-card {
   margin-bottom: 5px;
   border: var(--border-styles);
@@ -74,4 +79,29 @@ header {
 
 #chat .messages li:nth-child(odd) {
   background: #eee;
+}
+
+.btn-grad {
+  background-image: linear-gradient(
+    to right,
+    #4cb8c4 0%,
+    #3cd3ad 51%,
+    #4cb8c4 100%
+  );
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+}
+
+.btn-grad:hover {
+  background-position: right center;
+  /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
 }

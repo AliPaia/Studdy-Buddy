@@ -3,6 +3,15 @@ const { Op } = require('sequelize');
 
 const searchChat = async (userData) => {
   const chatData = await Chat.findAll({
+    attributes: [
+      'id',
+      'subject',
+      'subjectScore',
+      'isOpen',
+      'userId',
+      'user.username',
+    ],
+    include: { model: User, attributes: [] },
     where: {
       [Op.and]: [
         { isOpen: true },

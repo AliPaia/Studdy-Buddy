@@ -2,8 +2,8 @@ const form = document.querySelector('form');
 const chat = document.querySelector('#chat');
 const input = document.querySelector('.input');
 const messages = document.querySelector('.messages');
-const buddyUsername = document.querySelector('#buddy-name');
-const buddySubject = document.querySelector('#buddy-subject');
+const buddyEl = document.querySelector('#buddy');
+const subject = document.querySelector('#subject');
 
 const socket = io({ autoConnect: false });
 const username = chat.dataset.username;
@@ -33,25 +33,33 @@ const addMessage = (message) => {
   window.scrollTo(0, document.body.scrollHeight);
 };
 
+const editBuddyCard = (user) => {
+  if (user == 'none') {
+    buddyEl.dataset.userId = null;
+    buddyEl.textContent = 'None';
+  } else {
+  }
+};
+
 socket.on('chatMessage', (data) => {
   addMessage(data.username + ': ' + data.message);
 });
 
 socket.on('userJoin', (data) => {
-  buddyUsername.textContent = data.username;
+  buddyEl.textContent = data.username;
   addMessage(data.username + ' just joined the chat!');
   socket.emit('joinedRoom');
 });
 
 socket.on('userLeave', (data) => {
   addMessage(data.username + ' has left the chat.');
-  buddyUsername.textContent = 'None';
-  isActive ? (buddySubject.textContent = 'None') : null;
+  buddyEl.textContent = 'None';
+  isActive ? document.location.replace('/') : editBuddyCard('none');
 });
 
 addMessage("You have joined the chat as '" + username + "'.");
 
-if (buddyUsername.textContent == 'None') {
+if (buddyEl.textContent == 'None') {
   socket.emit('createRoom');
 } else {
   socket.emit('joinRoom', { roomId: 1 });
