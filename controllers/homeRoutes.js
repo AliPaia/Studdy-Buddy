@@ -4,10 +4,18 @@ const { searchChat } = require('../utils/query');
 const { User, Score, Chat } = require('../models');
 
 router.get('/', async (req, res) => {
+  //const { loggedIn, userId } = req.session || true
+  const loggedIn = true;
+  let userData;
+
   try {
+    if (loggedIn) {
+      userData = await User.findByPk(1);
+    }
+
     res.render('homepage', {
-      loggedIn: req.session.loggedIn,
-      isActive: req.session.isActive,
+      loggedIn,
+      userData,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -25,60 +33,84 @@ router.get('/assessment', async (req, res) => {
 });
 
 router.get('/chat', async (req, res) => {
-  // gets random user for testing purpose
-  const userId = req.session.userId || Math.floor(Math.random() * 5 + 1);
-  const subject = req.body.subject || 'mySql' || null; // modify?
+  const userId = req.session.userId || 1;
+  const subject = req.body.subject || 'vanillaJs' || null; // modify?
+  let chatData;
 
   try {
     const userData = await User.findByPk(userId, {
       attributes: { exclude: 'password' },
-      include: [{ model: Score, attributes: [subject] }, { model: Chat }],
+      include: [{ model: Score }, { model: Chat }],
       raw: true,
       nest: true,
     });
 
-    await Chat.update(
-      { isOpen: true },
-      {
-        where: {
-          userId: userData.id,
-        },
-      }
-    );
+    if (userData.isActive) {
+      chatData = await searchChat(userData);
+    } else {
+      await Chat.update(
+        { isOpen: true, subject, subjectScore: userData.score[subject] },
+        {
+          where: {
+            userId: userData.id,
+          },
+        }
+      );
+      chatData = await Chat.findOne({
+        where: { userId: userData.id },
+        raw: true,
+      });
+    }
+
+    console.log(chatData);
 
     res.render('chat', {
       loggedIn: req.session.loggedIn,
       // update values
       ...userData,
+      chatData,
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-// route for testing purposes
+// route for testing purposes, merge with regular chat route later
 router.get('/buddychat', async (req, res) => {
-  const userId = req.session.userId || Math.floor(Math.random() * 5 + 1);
-  const subject = req.body.subject || 'Vanilla JS' || null; // modify?
+  const userId = req.session.userId || 2;
+  const subject = req.body.subject || null;
+  let chatData;
 
   try {
     const userData = await User.findByPk(userId, {
-      attributes: ['username', 'id'],
-      include: { model: Score },
-      nest: true,
+      attributes: { exclude: 'password' },
+      include: [{ model: Score }, { model: Chat }],
       raw: true,
+      nest: true,
     });
-    const isActive = true;
+    // circumvent isActive but this is done before hitting route
+    User.update({ isActive: true }, { where: { id: userData.id } });
 
-    if (isActive) {
-      const chatData = await searchChat(userData);
+    if (userData.isActive) {
+      const chatDataArr = await searchChat(userData);
+      chatData =
+        chatDataArr[Math.floor(Math.random() * (chatDataArr.length - 1))];
+    } else {
+      chatData = await Chat.update(
+        { isOpen: true, subject, subjectScore: userData.score[subject] },
+        {
+          where: {
+            userId: userData.id,
+          },
+        }
+      );
     }
 
     res.render('chat', {
       loggedIn: req.session.loggedIn,
       // update values
       ...userData,
-      isActive,
+      chatData,
     });
   } catch (err) {
     res.status(500).json(err);
