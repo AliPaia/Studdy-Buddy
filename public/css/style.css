@@ -5,3 +5,18 @@
 .Nameheader{
     margin-top: 35px;
 }
+
+div {
+    background: rgba(48, 71, 147, 0.3) /* Green background with 30% opacity */
+  }
+
+  .container {
+    background: rgba(0,0,0,0.8);
+  }
+  
+  @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+    .container {
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+  }
