@@ -4,12 +4,15 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
+const { createServer } = require('http');
+const { Server } = require('socket.io');
 
 const sequelize = require('./config/connection');
+const { initSocket } = require('./config/socket.js');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 3001;
 
 // Set up Handlebars.js engine with custom helpers
 const hbs = exphbs.create({ helpers });
@@ -42,5 +45,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Now listening'));
+  const httpServer = app.listen(PORT, () => console.log('Now listening'));
+  initSocket(new Server(httpServer));
 });

@@ -24,15 +24,14 @@
             <a class='btn btn-grad' href='/assessment'>Update assessments</a>
             <button id='logout-btn' class='btn btn-grad'>Logout</button>
           {{else}}
-            <button>Checked-out</button>
+            <a class='btn btn-grad' href='/login'>Login</a>
           {{/if}}
-        {{/if}}
+        </section>
       </nav>
     </header>
     <main>
       {{{body}}}
     </main>
-    <!-- Render script for logged in users only -->
     {{#if loggedIn}}
       <script src='/js/logout.js'></script>
     {{/if}}

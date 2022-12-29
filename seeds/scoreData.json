@@ -1,0 +1,42 @@
+[
+  {
+    "vanillaJs": "1",
+    "mySql": "2",
+    "nodeJs": "3",
+    "express": "4",
+    "oop": "5",
+    "userId": "1"
+  },
+  {
+    "vanillaJs": "2",
+    "mySql": "3",
+    "nodeJs": "4",
+    "express": "5",
+    "oop": "1",
+    "userId": "2"
+  },
+  {
+    "vanillaJs": "3",
+    "mySql": "4",
+    "nodeJs": "5",
+    "express": "1",
+    "oop": "2",
+    "userId": "3"
+  },
+  {
+    "vanillaJs": "4",
+    "mySql": "4",
+    "nodeJs": "1",
+    "express": "2",
+    "oop": "3",
+    "userId": "4"
+  },
+  {
+    "vanillaJs": "5",
+    "mySql": "1",
+    "nodeJs": "2",
+    "express": "3",
+    "oop": "4",
+    "userId": "5"
+  }
+]

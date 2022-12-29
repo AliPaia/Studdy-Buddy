@@ -1,7 +1,13 @@
 const router = require('express').Router();
 const withAuth = require('../utils/auth');
+const { searchChat } = require('../utils/query');
+const { User, Score, Chat } = require('../models');
 
 router.get('/', async (req, res) => {
+  //const { loggedIn, userId } = req.session || true
+  const loggedIn = true;
+  let userData;
+
   try {
     if (loggedIn) {
       userData = await User.findByPk(1, {
@@ -13,9 +19,8 @@ router.get('/', async (req, res) => {
     }
     
     res.render('homepage', {
-      // just for implementations, change later
-      loggedIn: true,
-      userActive: true,
+      loggedIn,
+      userData,
     });
   } catch (err) {
     res.status(500).json(err);
