@@ -18,10 +18,11 @@
     <header>
       <nav class='container text-center'>
         <h1>Studdy Buddy</h1>
-        <a href='/login'>Login</a>
-        {{#if loggedIn}}
-          {{#if userActive}}
-            <button>Checked-in</button>
+        <section id='nav-btn' class='container'>
+          <a class='btn btn-grad' href='/'>Home</a>
+          {{#if loggedIn}}
+            <a class='btn btn-grad' href='/assessment'>Update assessments</a>
+            <button id='logout-btn' class='btn btn-grad'>Logout</button>
           {{else}}
             <button>Checked-out</button>
           {{/if}}
