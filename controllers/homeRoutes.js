@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
         raw: true,
       });
     }
-    
+
     res.render('homepage', {
       loggedIn,
       userData,

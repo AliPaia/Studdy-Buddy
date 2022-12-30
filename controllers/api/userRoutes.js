@@ -2,6 +2,19 @@ const router = require('express').Router();
 const withAuth = require('../../utils/auth');
 const { User, Score, Chat } = require('../../models');
 
+router.put('/', withAuth, async (req, res) => {
+  const { userId } = req.session;
+  const { isActive } = req.body;
+
+  try {
+    const response = await User.update({ isActive }, { where: { id: userId } });
+
+    res.json(response);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
