@@ -2,6 +2,7 @@ const router = require('express').Router();
 const withAuth = require('../../utils/auth');
 const { User, Score, Chat } = require('../../models');
 
+// update user isActive status
 router.put('/', withAuth, async (req, res) => {
   const { userId } = req.session;
   const { isActive } = req.body;
@@ -15,6 +16,7 @@ router.put('/', withAuth, async (req, res) => {
   }
 });
 
+// searches for user using provided username and logs in if password correct
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
@@ -41,6 +43,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
+// logs user out
 router.post('/logout', async (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
