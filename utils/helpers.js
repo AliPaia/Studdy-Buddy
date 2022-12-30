@@ -9,7 +9,7 @@ module.exports = {
       case 'vanillaJs':
         return 'Vanilla JS';
       case 'mySql':
-        return 'mySQL JS';
+        return 'mySQL';
       case 'nodeJs':
         return 'Node.JS';
       case 'express':

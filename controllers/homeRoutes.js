@@ -10,9 +10,14 @@ router.get('/', async (req, res) => {
 
   try {
     if (loggedIn) {
-      userData = await User.findByPk(userId);
+      userData = await User.findByPk(userId, {
+        attributes: { exclude: 'password' },
+        include: { model: Score, attributes: { exclude: ['id', 'userId'] } },
+        nest: true,
+        raw: true,
+      });
     }
-
+    
     res.render('homepage', {
       loggedIn,
       userData,
@@ -61,8 +66,6 @@ router.get('/chat', async (req, res) => {
         raw: true,
       });
     }
-
-    console.log(chatData);
 
     res.render('chat', {
       loggedIn: req.session.loggedIn,

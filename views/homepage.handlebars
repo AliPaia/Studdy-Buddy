@@ -26,26 +26,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr id='vanillaJs-row'>
-            <th scope='row'>Vanilla JS</th>
-            <td>null</td>
-          </tr>
-          <tr id='mySql-row'>
-            <th scope='row'>mySQL</th>
-            <td>null</td>
-          </tr>
-          <tr id='nodeJs-row'>
-            <th scope='row'>Node.JS</th>
-            <td>null</td>
-          </tr>
-          <tr id='express-row'>
-            <th scope='row'>Express</th>
-            <td>null</td>
-          </tr>
-          <tr id='oop-row'>
-            <th scope='row'>OOP</th>
-            <td>null</td>
-          </tr>
+          {{#each userData.score}}
+            <tr>
+              <th scope='row'>{{formatSubject @key}}</th>
+              <td>{{this}}</td>
+            </tr>
+          {{/each}}
         </tbody>
       </table>
       <button class='btn btn-grad'>Help a buddy</button>
