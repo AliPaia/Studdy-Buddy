@@ -4,13 +4,13 @@ const { searchChat } = require('../utils/query');
 const { User, Score, Chat } = require('../models');
 
 router.get('/', async (req, res) => {
-  //const { loggedIn, userId } = req.session || true
-  const loggedIn = true;
+  const { loggedIn, userId } = req.session;
+
   let userData;
 
   try {
     if (loggedIn) {
-      userData = await User.findByPk(1);
+      userData = await User.findByPk(userId);
     }
 
     res.render('homepage', {
@@ -119,7 +119,7 @@ router.get('/buddychat', async (req, res) => {
 
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect('/profile');
+    res.redirect('/');
     return;
   }
 
