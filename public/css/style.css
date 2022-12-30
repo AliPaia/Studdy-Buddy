@@ -1,3 +1,5 @@
+/* Style Idea: Yellow background, pink top bar, and silver nav bar to look like a #2 pencil. It would also make the blue iridescent buttons pop */
+
 :root {
   --primary-color: #06283d;
   --secondary-color: #256d85;
@@ -10,11 +12,19 @@
 body {
   margin: 0;
   font-family: sans-serif;
+  background: #e19526;
 }
 
 header {
   margin: 5px;
   border: var(--border-styles);
+  background: #dbb7bb;
+}
+
+.mb-4 {
+  display: flex;
+  justify-content: right;
+  width: 100%;
 }
 
 #nav-btn {
