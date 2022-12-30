@@ -1,7 +1,7 @@
 {
   "name": "develop",
   "version": "1.0.0",
-  "description": "",
+  "description": "## Table of Contents 1. [Title](#title) 2. [Project](#project) 3. [Description](#description) 4. [Working](#working) 5. [Usage](#usage) 6. [User Story](#user-story) 7. [Acceptance Criteria](#acceptance-criteria) 8. [Project Outline](#project-outline) 9. [Wireframe](#wireframe) 10. [Video Preview of Web Application](#video-preview-of-web-application) 11. [Technology](#technology) 12. [Contribution](#contribution) 13. [Source](#source)",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -15,10 +15,12 @@
   "dependencies": {
     "bcrypt": "^5.0.0",
     "connect-session-sequelize": "^7.0.4",
+    "discord": "^0.8.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
     "express-session": "^1.17.1",
+    "js": "^0.1.0",
     "mysql2": "^2.2.5",
     "sequelize": "^6.3.5",
     "socket.io": "^4.5.4"
@@ -28,5 +30,13 @@
     "eslint-config-prettier": "^6.15.0",
     "prettier": "^2.1.2"
   },
-  "keywords": []
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AliPaia/Studdy-Buddy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AliPaia/Studdy-Buddy/issues"
+  },
+  "homepage": "https://github.com/AliPaia/Studdy-Buddy#readme"
 }
