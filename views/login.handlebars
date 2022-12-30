@@ -1,26 +1,19 @@
-<section class='container'>
-  <div class='row'>
-    <div class='col'>
-      <form action='/login' method='post'>
-      </form>
-      <label>Username:</label>
-      <input type='text' name='email' />
-      <label>Password</label>
-      <input type='password' name='password' />
-      <input class='btn btn-primary' type='submit' value='Submit' />
-    </div>
-  </div>
+<header class='container text-center'>
+  <header class='container text-left'></header>
+  <header class='container text-right'></header>
+  <form>
+    <label>Username:</label>
+    <input id='username' type='text' name='name' />
+    <label>Password</label>
+    <input id='password' type='password' name='password' />
 
-  <div class='row'>
-    <div class='col'>
-      <form action='/login' method='post'>
-        <label>Username:</label>
-        <input type='text' name='name' />
-        <label>Password</label>
-        <input type='password' name='password' />
+    <button id='create-account' class='btn btn-primary btn-grad'>Create Account</button>
+    <button id='profile-login' class='btn btn-primary btn-grad'>Go to Profile</button>
+    {{! <input class='checkbox' type='checkbox' value='Remember Me' />
+        <input class="linkspara"><a href="#" class="links">Forgot Password? }}
+  </form>
+  <header class='container text-left'></header>
+  <header class='container text-right'></header>
+</header>
 
-        <input class='btn btn-primary' type='submit' value='Submit' />
-      </form>
-    </div>
-  </div>
-</section>
+<script src='/js/login.js'></script>
