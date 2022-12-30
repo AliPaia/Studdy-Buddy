@@ -1,5 +1,6 @@
 const User = require('./User');
 const Score = require('./Score');
+const Chat = require('./Chat');
 
 User.hasOne(Score, {
   foreignKey: 'userId',
@@ -10,4 +11,14 @@ Score.belongsTo(User, {
   foreignKey: 'userId',
 });
 
-module.exports = { User, Score };
+User.hasOne(Chat, {
+  foreignKey: 'userId',
+  onUpdate: 'CASCADE',
+});
+
+Chat.belongsTo(User, {
+  foreignKey: 'userId',
+  onUpdate: 'CASCADE',
+});
+
+module.exports = { User, Score, Chat };

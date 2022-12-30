@@ -1,22 +1,44 @@
 <section class='container text-center'>
   <h2>Welcome!</h2>
   <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi,
-    voluptatem voluptates quas ipsam minus hic animi tempore possimus cum saepe
-    ratione atque consequatur eaque, similique et, nam mollitia laborum
-    asperiores?
+    Welcome to a growing community of coders working hand-in-hand to make sure
+    no buddy gets left behind
   </p>
 </section>
 {{#if loggedIn}}
-  <section class='container text-center'>
-    <select class='form-select' aria-label='Default select example'>
-      <option selected>Open this select menu</option>
-      <option value='js'>Vanilla JS</option>
-      <option value='mysql'>mySQL</option>
-      <option value='node'>Node.JS</option>
-      <option value='express'>Express</option>
-      <option value='oop'>OOP</option>
-    </select>
-    <button>Find a buddy</button>
-  </section>
+  <article id='chat-options' class='container d-flex justify-content-evenly'>
+    <section id='create-room' class='text-center'>
+      <select class='form-select' aria-label='select subject'>
+        <option value='vanillaJs'>Vanilla JS</option>
+        <option value='mySql'>mySQL</option>
+        <option value='nodeJs'>Node.JS</option>
+        <option value='express'>Express</option>
+        <option value='oop'>OOP</option>
+      </select>
+      <button class='btn btn-grad'>Find a buddy</button>
+    </section>
+    <section id='join-room'>
+      <table class='table table-striped'>
+        <thead>
+          <tr>
+            <th scope='col'>Subject</th>
+            <th scope='col'>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each userData.score}}
+            <tr>
+              <th scope='row'>{{formatSubject @key}}</th>
+              <td>{{this}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      <button class='btn btn-grad'>Help a buddy</button>
+    </section>
+  </article>
+{{/if}}
+
+{{#if loggedIn}}
+  <script src='./js/homepage.js'></script>
 {{/if}}

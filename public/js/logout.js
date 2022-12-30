@@ -1,29 +1,13 @@
-// + new ActionRowBuilder<ButtonBuilder>()
+const logout = async (event) => {
+  event.preventDefault();
 
-// const { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, Events } = require('discord.js');
+  const response = await fetch('/api/users/logout', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+  });
 
-// client.on(Events.InteractionCreate, async interaction => {
-// 	if (!interaction.isChatInputCommand()) return;
+  if (response.ok) document.location.replace('/');
+  else alert(response.statusText);
+};
 
-// 	if (interaction.commandName === 'button') {
-// 		const row = new ActionRowBuilder()
-// 			.addComponents(
-// 				// ...
-// 			);
-
-// 		const embed = new EmbedBuilder()
-// 			.setColor(0x0099FF)
-// 			.setTitle('Some title')
-// 			.setURL('https://discord.js.org')
-// 			.setDescription('Some description here');
-
-// 		await interaction.reply({ content: 'I think you should,', ephemeral: true, embeds: [embed], components: [row] });
-// 	}
-// });
-
-// client.on(Events.InteractionCreate, interaction => {
-// 	if (!interaction.isButton()) return;
-// 	console.log(interaction);
-// });
-
-console.log('we made it!!!!');
+document.querySelector('#logout-btn').addEventListener('click', logout);
