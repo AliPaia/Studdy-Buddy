@@ -1,4 +1,3 @@
-console.log('JS is running!');
 const loginToProfileBtn = document.getElementById('profile-login');
 const loginCreateAccountBtn = document.getElementById('create-account');
 

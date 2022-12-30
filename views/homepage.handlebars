@@ -15,7 +15,7 @@
         <option value='express'>Express</option>
         <option value='oop'>OOP</option>
       </select>
-      <button class='btn btn-grad'>Find a buddy</button>
+      <button class='btn btn-grad chat-btn' data-option='find'>Find a buddy</button>
     </section>
     <section id='join-room'>
       <table class='table table-striped'>
@@ -34,7 +34,7 @@
           {{/each}}
         </tbody>
       </table>
-      <button class='btn btn-grad'>Help a buddy</button>
+      <button class='btn btn-grad chat-btn' data-option='help'>Help a buddy</button>
     </section>
   </article>
 {{/if}}
