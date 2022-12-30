@@ -53,6 +53,10 @@ router.get('/chat', async (req, res) => {
       const chatDataArr = await searchChat(userData);
       chatData =
         chatDataArr[Math.floor(Math.random() * (chatDataArr.length - 1))];
+      if (!chatData) {
+        res.status(404).redirect('/');
+        return;
+      }
     } else {
       await Chat.update({ isOpen: true }, { where: { userId } });
       chatData = await Chat.findOne({

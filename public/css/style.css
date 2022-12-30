@@ -37,11 +37,11 @@ header {
   border: var(--border-styles);
 }
 
-#chat {
+#chat-window {
   border: var(--border-styles);
 }
 
-#chat form {
+#chat-window form {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -51,7 +51,7 @@ header {
   padding: 0.25rem;
 }
 
-#chat form input {
+#chat-window form input {
   border: 0;
   padding: 0.5rem;
   width: 100%;
@@ -61,7 +61,7 @@ header {
   background: #ccc;
 }
 
-#chat form button {
+#chat-window form button {
   width: 6rem;
   background-color: #1b8c00;
   color: white;
@@ -72,22 +72,22 @@ header {
   text-transform: uppercase;
 }
 
-#chat form button:hover {
+#chat-window form button:hover {
   background-color: #166d01;
 }
 
-#chat .messages {
+#chat-window .messages {
   margin: 0;
   padding: 0;
   margin-bottom: 3rem;
   list-style: none;
 }
 
-#chat .messages li {
+#chat-window .messages li {
   padding: 0.5rem;
 }
 
-#chat .messages li:nth-child(odd) {
+#chat-window .messages li:nth-child(odd) {
   background: #eee;
 }
 

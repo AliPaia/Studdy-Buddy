@@ -1,37 +1,37 @@
 const { User, Score, Chat } = require('../models');
 
 const initSocket = (io) => {
+  io.use((socket, next) => {
+    const { chatId, userId, username } = socket.handshake.auth;
+    if (chatId && userId && username) {
+      socket.chatId = chatId;
+      socket.userId = userId;
+      socket.username = username;
+      next();
+    } else return new Error('invalid');
+  });
+
   io.on('connection', async function (socket) {
-    let roomId;
-    const { username, userId } = socket.handshake.auth;
-
-    socket.username = username;
-    socket.userId = userId;
-
-    socket.on('createRoom', async (data) => {
-      roomId = userId;
-      socket.join(roomId);
-    });
+    const { chatId, userId, username } = socket;
+    socket.join(chatId);
 
     socket.on('joinRoom', async (data) => {
-      roomId = data.roomId;
-      socket.join(roomId);
-      socket.broadcast.to(roomId).emit('userJoin', { username, userId });
+      socket.broadcast.to(chatId).emit('userJoin', { username, userId });
     });
 
     socket.on('userJoin', async (data) => {
       socket.buddyUsername = data.username;
       socket.buddyUserId = data.userId;
-      socket.broadcast.to(roomId).emit('userJoin', data);
+      socket.broadcast.to(chatId).emit('userJoin', data);
     });
 
     socket.on('chatMessage', async (data) => {
       data.username = socket.username;
-      socket.broadcast.to(roomId).emit('chatMessage', data);
+      socket.broadcast.to(chatId).emit('chatMessage', data);
     });
 
     socket.on('disconnect', async (data) => {
-      socket.broadcast.to(roomId).emit('userLeave', { username });
+      socket.broadcast.to(chatId).emit('userLeave', { username });
       const chatData = await Chat.update(
         { isOpen: false },
         { where: { userId } }

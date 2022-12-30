@@ -1,35 +1,36 @@
-const form = document.querySelector('form');
-const chat = document.querySelector('#chat');
-const input = document.querySelector('.input');
-const messages = document.querySelector('.messages');
+const formEl = document.querySelector('form');
+const chatEl = document.querySelector('#chat-page');
+const inputEl = document.querySelector('.input');
+const messagesEl = document.querySelector('.messages');
 const buddyEl = document.querySelector('#buddy');
-const subject = document.querySelector('#subject');
+const subjectEl = document.querySelector('#subject');
 
 const socket = io({ autoConnect: false });
-const username = chat.dataset.username;
-const userId = parseInt(chat.dataset.userId);
-const isActive = chat.dataset.isActive == 'true';
+const chatId = parseInt(chatEl.dataset.chatId);
+const username = chatEl.dataset.username;
+const userId = parseInt(chatEl.dataset.userId);
+const isActive = chatEl.dataset.isActive == '1';
 
-socket.auth = { userId, username };
+socket.auth = { chatId, userId, username };
 socket.connect();
 
 const sendMessage = (event) => {
   event.preventDefault();
 
-  addMessage(username + ': ' + input.value);
+  addMessage(username + ': ' + inputEl.value);
 
   socket.emit('chatMessage', {
-    message: input.value,
+    message: inputEl.value,
   });
 
-  input.value = '';
+  inputEl.value = '';
   return false;
 };
 
 const addMessage = (message) => {
   const li = document.createElement('li');
   li.innerHTML = message;
-  messages.appendChild(li);
+  messagesEl.appendChild(li);
   window.scrollTo(0, document.body.scrollHeight);
 };
 
@@ -54,18 +55,23 @@ socket.on('userJoin', (data) => {
 socket.on('userLeave', (data) => {
   addMessage(data.username + ' has left the chat.');
   buddyEl.textContent = 'None';
-  isActive ? document.location.replace('/') : editBuddyCard('none');
+  if (isActive) {
+    addMessage('Page will redirect in a few seconds');
+    setTimeout(() => {
+      document.location.replace('/');
+    }, 5000);
+  } else {
+    editBuddyCard('none');
+  }
 });
 
 addMessage("You have joined the chat as '" + username + "'.");
 
-if (buddyEl.textContent == 'None') {
-  socket.emit('createRoom');
-} else {
-  socket.emit('joinRoom', { roomId: 1 });
+if (buddyEl.textContent != 'None') {
+  socket.emit('joinRoom');
 }
 
-form.addEventListener('submit', sendMessage, false);
+formEl.addEventListener('submit', sendMessage, false);
 
 // window.onbeforeunload = () => {
 //   return "Are you sure you want to close the window?";
