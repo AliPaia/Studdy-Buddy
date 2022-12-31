@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/assessment', async (req, res) => {
+router.get('/assessment', withAuth, async (req, res) => {
   try {
     res.render('assessment', {
       loggedIn: req.session.loggedIn,
@@ -37,9 +37,8 @@ router.get('/assessment', async (req, res) => {
   }
 });
 
-router.get('/chat', async (req, res) => {
-  const userId = req.session.userId || 1;
-  const subject = req.body.subject || 'vanillaJs' || null; // modify?
+router.get('/chat', withAuth, async (req, res) => {
+  const { userId } = req.session;
   let chatData;
 
   try {
@@ -49,64 +48,21 @@ router.get('/chat', async (req, res) => {
       raw: true,
       nest: true,
     });
-
-    if (userData.isActive) {
-      chatData = await searchChat(userData);
-    } else {
-      await Chat.update(
-        { isOpen: true, subject, subjectScore: userData.score[subject] },
-        {
-          where: {
-            userId: userData.id,
-          },
-        }
-      );
-      chatData = await Chat.findOne({
-        where: { userId: userData.id },
-        raw: true,
-      });
-    }
-
-    res.render('chat', {
-      loggedIn: req.session.loggedIn,
-      // update values
-      ...userData,
-      chatData,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-// route for testing purposes, merge with regular chat route later
-router.get('/buddychat', async (req, res) => {
-  const userId = req.session.userId || 2;
-  const subject = req.body.subject || null;
-  let chatData;
-
-  try {
-    const userData = await User.findByPk(userId, {
-      attributes: { exclude: 'password' },
-      include: [{ model: Score }, { model: Chat }],
-      raw: true,
-      nest: true,
-    });
-    // circumvent isActive but this is done before hitting route
-    User.update({ isActive: true }, { where: { id: userData.id } });
 
     if (userData.isActive) {
       const chatDataArr = await searchChat(userData);
       chatData =
         chatDataArr[Math.floor(Math.random() * (chatDataArr.length - 1))];
+      if (!chatData) {
+        res.status(404).redirect('/');
+        return;
+      }
     } else {
-      chatData = await Chat.update(
-        { isOpen: true, subject, subjectScore: userData.score[subject] },
-        {
-          where: {
-            userId: userData.id,
-          },
-        }
-      );
+      await Chat.update({ isOpen: true }, { where: { userId } });
+      chatData = await Chat.findOne({
+        where: { userId: userData.id },
+        raw: true,
+      });
     }
 
     res.render('chat', {
@@ -129,7 +85,7 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/profile', (req, res) => {
+router.get('/profile', withAuth, (req, res) => {
   res.render('profile');
 });
 

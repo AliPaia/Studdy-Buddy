@@ -1,35 +1,37 @@
-<section id='buddy-card' class='container text-center'>
-  <section class='text-center'>
-    <p>Currently Connected Buddy:
-      {{#if isActive}}
-        <span
-          id='buddy'
-          data-user-id='{{chatData.userId}}'
-        >{{chatData.username}}</span>
-      {{else}}
-        <span id='buddy' data-user-id='null'>None</span>
-      {{/if}}
-    </p>
-    <p>Studdy Buddy Subject:
-      <span id='subject' data-subject='{{chatData.subject}}'>{{formatSubject
-          chatData.subject
-        }}</span>
-    </p>
-  </section>
-</section>
-
 <section
-  class='container'
-  id='chat'
+  id='chat-page'
+  data-chat-id='{{chatData.id}}'
   data-user-id='{{id}}'
   data-username='{{username}}'
   data-is-active='{{isActive}}'
 >
-  <ul class='messages'></ul>
-  <form>
-    <input type='text' class='input' autocomplete='off' autofocus />
-    <button>Send</button>
-  </form>
+  <section id='buddy-card' class='container text-center'>
+    <section class='text-center'>
+      <h2>Currently Connected Buddy:
+        {{#if isActive}}
+          <span
+            id='buddy'
+            data-user-id='{{chatData.userId}}'
+          >{{chatData.username}}</span>
+        {{else}}
+          <span id='buddy' data-user-id='null'>None</span>
+        {{/if}}
+      </h2>
+      <h2>Studdy Buddy Subject:
+        <span id='subject' data-subject='{{chatData.subject}}'>{{formatSubject
+            chatData.subject
+          }}</span>
+      </h2>
+    </section>
+  </section>
+
+  <section class='container' id='chat-window'>
+    <ul class='messages'></ul>
+    <form>
+      <input type='text' class='input' autocomplete='off' autofocus />
+      <button>Send</button>
+    </form>
+  </section>
 </section>
 
 <script
