@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/assessment', async (req, res) => {
+router.get('/assessment', withAuth, async (req, res) => {
   try {
     res.render('assessment', {
       loggedIn: req.session.loggedIn,
@@ -37,7 +37,7 @@ router.get('/assessment', async (req, res) => {
   }
 });
 
-router.get('/chat', async (req, res) => {
+router.get('/chat', withAuth, async (req, res) => {
   const { userId } = req.session;
   let chatData;
 
@@ -85,7 +85,7 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/profile', (req, res) => {
+router.get('/profile', withAuth, (req, res) => {
   res.render('profile');
 });
 
