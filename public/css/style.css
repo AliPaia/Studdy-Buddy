@@ -5,21 +5,22 @@
   --secondary-color: #256d85;
   --tertiary-color: #47b5ff;
   --quaternary-color: #dff6ff;
-  --pencil-yellow: #EDB560;
+  --pencil-yellow: #edb560;
   --pencil-pink: #dbb7bb;
   --pencil-silver: #e2e2e3;
   --border-styles: 5px solid var(--secondary-color);
   --bs-card-bg: #06283d;
 }
 
-h1,h2 {
+h1,
+h2 {
   color: var(--secondary-color);
 }
 
 body {
   margin: 0;
   font-family: sans-serif;
-  background: var(--pencil-yellow)
+  background: var(--pencil-yellow);
 }
 
 header {
@@ -112,10 +113,12 @@ header {
 }
 
 .btn-grad {
-  background-image: linear-gradient(to right,
-      #4cb8c4 0%,
-      #3cd3ad 51%,
-      #4cb8c4 100%);
+  background-image: linear-gradient(
+    to right,
+    #4cb8c4 0%,
+    #3cd3ad 51%,
+    #4cb8c4 100%
+  );
   margin: 10px;
   padding: 15px 45px;
   text-align: center;
