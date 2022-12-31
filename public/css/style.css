@@ -5,20 +5,27 @@
   --secondary-color: #256d85;
   --tertiary-color: #47b5ff;
   --quaternary-color: #dff6ff;
+  --pencil-yellow: #EDB560;
+  --pencil-pink: #dbb7bb;
+  --pencil-silver: #e2e2e3;
   --border-styles: 5px solid var(--secondary-color);
   --bs-card-bg: #06283d;
+}
+
+h1,h2 {
+  color: var(--secondary-color);
 }
 
 body {
   margin: 0;
   font-family: sans-serif;
-  background: #e19526;
+  background: var(--pencil-yellow)
 }
 
 header {
   margin: 5px;
   border: var(--border-styles);
-  background: #dbb7bb;
+  background: var(--pencil-pink);
 }
 
 .mb-4 {
@@ -29,6 +36,7 @@ header {
 
 #nav-btn {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -38,16 +46,35 @@ header {
 }
 
 #chat-window {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 0;
+  height: 500px;
   border: var(--border-styles);
 }
 
+#chat-window .messages {
+  width: 100%;
+  flex: 1;
+  border-bottom: solid var(--secondary-color);
+  overflow: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#chat-window .messages li {
+  padding: 0.5rem;
+}
+
 #chat-window form {
-  position: fixed;
+  flex: 1;
+  flex-grow: 0;
   bottom: 0;
   left: 0;
   width: 100%;
   display: flex;
-  box-sizing: border-box;
   padding: 0.25rem;
 }
 
@@ -76,28 +103,19 @@ header {
   background-color: #166d01;
 }
 
-#chat-window .messages {
-  margin: 0;
-  padding: 0;
-  margin-bottom: 3rem;
-  list-style: none;
+#chat-window .messages li.self {
+  background: var(--pencil-silver);
 }
 
-#chat-window .messages li {
-  padding: 0.5rem;
-}
-
-#chat-window .messages li:nth-child(odd) {
-  background: #eee;
+#chat-window .messages li.buddy {
+  background: var(--pencil-pink);
 }
 
 .btn-grad {
-  background-image: linear-gradient(
-    to right,
-    #4cb8c4 0%,
-    #3cd3ad 51%,
-    #4cb8c4 100%
-  );
+  background-image: linear-gradient(to right,
+      #4cb8c4 0%,
+      #3cd3ad 51%,
+      #4cb8c4 100%);
   margin: 10px;
   padding: 15px 45px;
   text-align: center;
@@ -114,4 +132,22 @@ header {
   /* change the direction of the change here */
   color: #fff;
   text-decoration: none;
+}
+
+@media screen and (max-width: 500px) {
+  .btn-grad {
+    padding: 0;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .btn-grad {
+    padding: 15px 30px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .btn-grad {
+    padding: 15px 45px;
+  }
 }

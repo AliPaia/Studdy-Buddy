@@ -17,7 +17,7 @@ socket.connect();
 const sendMessage = (event) => {
   event.preventDefault();
 
-  addMessage(username + ': ' + inputEl.value);
+  addMessage(username + ': ' + inputEl.value, 'self');
 
   socket.emit('chatMessage', {
     message: inputEl.value,
@@ -27,11 +27,12 @@ const sendMessage = (event) => {
   return false;
 };
 
-const addMessage = (message) => {
+const addMessage = (message, user) => {
   const li = document.createElement('li');
+  li.classList.add(user)
   li.innerHTML = message;
   messagesEl.appendChild(li);
-  window.scrollTo(0, document.body.scrollHeight);
+  li.scrollIntoView();
 };
 
 const editBuddyCard = (user) => {
@@ -43,17 +44,17 @@ const editBuddyCard = (user) => {
 };
 
 socket.on('chatMessage', (data) => {
-  addMessage(data.username + ': ' + data.message);
+  addMessage(data.username + ': ' + data.message, 'buddy');
 });
 
 socket.on('userJoin', (data) => {
   buddyEl.textContent = data.username;
-  addMessage(data.username + ' just joined the chat!');
+  addMessage(data.username + ' just joined the chat!', 'buddy');
   socket.emit('joinedRoom');
 });
 
 socket.on('userLeave', (data) => {
-  addMessage(data.username + ' has left the chat.');
+  addMessage(data.username + ' has left the chat.', 'buddy');
   buddyEl.textContent = 'None';
   if (isActive) {
     addMessage('Page will redirect in a few seconds');
@@ -65,7 +66,7 @@ socket.on('userLeave', (data) => {
   }
 });
 
-addMessage("You have joined the chat as '" + username + "'.");
+addMessage("You have joined the chat as '" + username + "'.", 'self');
 
 if (buddyEl.textContent != 'None') {
   socket.emit('joinRoom');

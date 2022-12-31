@@ -7,7 +7,7 @@
 >
   <section id='buddy-card' class='container text-center'>
     <section class='text-center'>
-      <p>Currently Connected Buddy:
+      <h2>Currently Connected Buddy:
         {{#if isActive}}
           <span
             id='buddy'
@@ -16,12 +16,12 @@
         {{else}}
           <span id='buddy' data-user-id='null'>None</span>
         {{/if}}
-      </p>
-      <p>Studdy Buddy Subject:
+      </h2>
+      <h2>Studdy Buddy Subject:
         <span id='subject' data-subject='{{chatData.subject}}'>{{formatSubject
             chatData.subject
           }}</span>
-      </p>
+      </h2>
     </section>
   </section>
 
