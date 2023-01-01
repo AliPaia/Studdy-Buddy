@@ -39,10 +39,12 @@ const addMessage = (message, user) => {
 };
 
 const editBuddyCard = (user) => {
-  if (user == 'none') {
+  if (user == '') {
     buddyEl.dataset.userId = null;
-    buddyEl.textContent = 'None';
+    buddyEl.textContent = '';
   } else {
+    buddyEl.dataset.userId = user.userId;
+    buddyEl.textContent = user.username;
   }
 };
 
@@ -51,14 +53,14 @@ socket.on('chatMessage', (data) => {
 });
 
 socket.on('userJoin', (data) => {
-  buddyEl.textContent = data.username;
+  editBuddyCard(data);
   addMessage(data.username + ' just joined the chat!', 'buddy');
   socket.emit('userJoin', data);
 });
 
 socket.on('userLeave', (data) => {
+  editBuddyCard('');
   addMessage(data.username + ' has left the chat.', 'buddy');
-  buddyEl.textContent = 'None';
   if (isActive) {
     socket.disconnect();
     addMessage('Page will redirect in a few seconds', 'buddy');
@@ -66,7 +68,6 @@ socket.on('userLeave', (data) => {
       document.location.replace('/');
     }, 5000);
   } else {
-    editBuddyCard('none');
     socket.emit('userLeave');
   }
 });

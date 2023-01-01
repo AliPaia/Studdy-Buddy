@@ -13,11 +13,11 @@ const initSocket = (io) => {
 
   io.on('connection', async function (socket) {
     const { chatId, userId, username } = socket;
+    socket.chatData = await Chat.findByPk(chatId);
     socket.join(chatId);
 
     socket.on('roomCreated', async (data) => {
       socket.broadcast.emit('roomCreated');
-      socket.chatData = await Chat.findByPk(chatId);
     });
 
     socket.on('joinRoom', async (data) => {

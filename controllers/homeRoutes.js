@@ -51,8 +51,7 @@ router.get('/chat', withAuth, async (req, res) => {
 
     if (userData.isActive) {
       const chatDataArr = await searchChat(userData);
-      chatData =
-        chatDataArr[Math.floor(Math.random() * (chatDataArr.length - 1))];
+      chatData = chatDataArr[Math.floor(Math.random() * chatDataArr.length)];
       roomStatus = 'joined';
       if (!chatData) {
         // if no rooms open then join their own room
