@@ -129,8 +129,18 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/profile', (req, res) => {
-  res.render('profile');
+router.get('/profile',async (req, res) => {
+  const userId = req.session.userId || 2;
+  const loggedIn= req.session.loggedIn;
+  const userData = await User.findByPk(userId, {
+    attributes: { exclude: 'password' },
+    raw: true,
+    nest: true,
+     });
+     console.log(userData)
+  res.render('profile',{
+    userData, loggedIn
+  });
 });
 
 module.exports = router;
