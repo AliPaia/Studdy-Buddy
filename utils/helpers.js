@@ -20,6 +20,7 @@ module.exports = {
         return null;
     }
   },
+  // used to place sections in main
   section: function (name, options) {
     if (!this._sections) this._sections = {};
     this._sections[name] = options.fn(this);

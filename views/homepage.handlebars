@@ -40,5 +40,7 @@
 {{/if}}
 
 {{#if loggedIn}}
-  <script src='./js/homepage.js'></script>
+  {{#section 'script'}}
+    <script src='./js/homepage.js'></script>
+  {{/section}}
 {{/if}}
