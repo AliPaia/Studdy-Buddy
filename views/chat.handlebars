@@ -1,4 +1,4 @@
-<section
+<article
   id='chat-page'
   data-chat-id='{{chatData.id}}'
   data-user-id='{{id}}'
@@ -7,22 +7,22 @@
   data-room-status='{{roomStatus}}'
 >
   <!-- Modal -->
-  <div
+  <article
     class='modal fade'
     id='myModal'
     tabindex='-1'
     aria-labelledby='exampleModalLabel'
     aria-hidden='true'
   >
-    <div class='modal-dialog modal-dialog-centered'>
-      <div class='modal-content'>
-        <div class='modal-header'>
+    <section class='modal-dialog modal-dialog-centered'>
+      <section class='modal-content'>
+        <section class='modal-header'>
           <h1 class='modal-title fs-5' id='exampleModalLabel'>No user found</h1>
-        </div>
-        <div class='modal-body'>
+        </section>
+        <section class='modal-body'>
           There is currently no users to match you with.
-        </div>
-        <div class='modal-footer'>
+        </section>
+        <section class='modal-footer'>
           <a class='btn btn-secondary' href='/'>Go Home</a>
           <button class='btn btn-primary' type='button' disabled>
             <span
@@ -32,10 +32,10 @@
             ></span>
             Searching...
           </button>
-        </div>
-      </div>
-    </div>
-  </div>
+        </section>
+      </section>
+    </section>
+  </article>
   <section id='buddy-card' class='container text-center'>
     <section class='text-center'>
       <h2>Currently Connected Buddy:
@@ -63,7 +63,7 @@
       <button>Send</button>
     </form>
   </section>
-</section>
+</article>
 
 {{#section 'script'}}
   <script
