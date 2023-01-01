@@ -9,18 +9,19 @@
   <!-- Searching for user Modal -->
   <article
     class='modal fade'
-    id='myModal'
+    id='no-user-modal'
     tabindex='-1'
-    aria-labelledby='exampleModalLabel'
+    aria-labelledby='no-user-title'
     aria-hidden='true'
   >
     <section class='modal-dialog modal-dialog-centered'>
       <section class='modal-content'>
         <section class='modal-header'>
-          <h1 class='modal-title fs-5' id='exampleModalLabel'>No user found</h1>
+          <h2 class='modal-title fs-5' id='no-user-title'>No user found</h2>
         </section>
         <section class='modal-body'>
-          There is currently no users to match you with.
+          There is currently no users to match you with. Page will automatically
+          refresh if a user is found
         </section>
         <section class='modal-footer'>
           <a class='btn btn-secondary' href='/'>Go Home</a>
@@ -36,7 +37,7 @@
       </section>
     </section>
   </article>
-  {{!-- second user information --}}
+  {{! second user information }}
   <section id='buddy-card' class='container text-center'>
     <section class='text-center'>
       <h2>Currently Connected Buddy:
@@ -56,7 +57,7 @@
       </h2>
     </section>
   </section>
-{{!-- chat window --}}
+  {{! chat window }}
   <section class='container' id='chat-window'>
     <ul class='messages'></ul>
     <form>

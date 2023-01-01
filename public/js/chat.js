@@ -4,7 +4,7 @@ const inputEl = document.querySelector('.input');
 const messagesEl = document.querySelector('.messages');
 const buddyEl = document.querySelector('#buddy');
 const subjectEl = document.querySelector('#subject');
-const myModal = new bootstrap.Modal('#myModal', {
+const noUserModal = new bootstrap.Modal('#no-user-modal', {
   backdrop: 'static',
   keyboard: false,
 });
@@ -77,7 +77,7 @@ addMessage("You have joined the chat as '" + username + "'.", 'self');
 if (roomStatus == 'joined') {
   socket.emit('joinRoom');
 } else if (roomStatus == 'searching') {
-  myModal.show();
+  noUserModal.show();
 
   socket.on('roomCreated', async (data) => {
     const response = await fetch('/api/chats/matching');
@@ -91,6 +91,6 @@ if (roomStatus == 'joined') {
 
 formEl.addEventListener('submit', sendMessage, false);
 
-// window.onbeforeunload = () => {
-//   return "Are you sure you want to leave this page?";
-// }
+window.onbeforeunload = function () {
+  return 'Are you sure you want to leave?';
+};
