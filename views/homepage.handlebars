@@ -1,5 +1,5 @@
 <section class='container text-center'>
-  <h2>Welcome!</h2>
+  <h2>Welcome{{#if loggedIn}} {{userData.username}}{{/if}}!</h2>
   <p>
     Welcome to a growing community of coders working hand-in-hand to make sure
     no buddy gets left behind

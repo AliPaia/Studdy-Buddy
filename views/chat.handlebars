@@ -4,7 +4,38 @@
   data-user-id='{{id}}'
   data-username='{{username}}'
   data-is-active='{{isActive}}'
+  data-room-status='{{roomStatus}}'
 >
+  <!-- Modal -->
+  <div
+    class='modal fade'
+    id='myModal'
+    tabindex='-1'
+    aria-labelledby='exampleModalLabel'
+    aria-hidden='true'
+  >
+    <div class='modal-dialog modal-dialog-centered'>
+      <div class='modal-content'>
+        <div class='modal-header'>
+          <h1 class='modal-title fs-5' id='exampleModalLabel'>No user found</h1>
+        </div>
+        <div class='modal-body'>
+          There is currently no users to match you with.
+        </div>
+        <div class='modal-footer'>
+          <a class='btn btn-secondary' href='/'>Go Home</a>
+          <button class='btn btn-primary' type='button' disabled>
+            <span
+              class='spinner-border spinner-border-sm'
+              role='status'
+              aria-hidden='true'
+            ></span>
+            Searching...
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
   <section id='buddy-card' class='container text-center'>
     <section class='text-center'>
       <h2>Currently Connected Buddy:
@@ -14,7 +45,7 @@
             data-user-id='{{chatData.userId}}'
           >{{chatData.username}}</span>
         {{else}}
-          <span id='buddy' data-user-id='null'>None</span>
+          <span id='buddy' data-user-id='null'></span>
         {{/if}}
       </h2>
       <h2>Studdy Buddy Subject:
@@ -34,9 +65,11 @@
   </section>
 </section>
 
-<script
-  src='https://cdn.socket.io/4.5.4/socket.io.min.js'
-  integrity='sha384-/KNQL8Nu5gCHLqwqfQjA689Hhoqgi2S84SNUxC3roTe4EhJ9AfLkp8QiQcU8AMzI'
-  crossorigin='anonymous'
-></script>
-<script src='./js/chat.js'></script>
+{{#section 'script'}}
+  <script
+    src='https://cdn.socket.io/4.5.4/socket.io.min.js'
+    integrity='sha384-/KNQL8Nu5gCHLqwqfQjA689Hhoqgi2S84SNUxC3roTe4EhJ9AfLkp8QiQcU8AMzI'
+    crossorigin='anonymous'
+  ></script>
+  <script src='./js/chat.js'></script>
+{{/section}}

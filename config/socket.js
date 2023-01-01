@@ -15,6 +15,11 @@ const initSocket = (io) => {
     const { chatId, userId, username } = socket;
     socket.join(chatId);
 
+    socket.on('roomCreated', async (data) => {
+      socket.broadcast.emit('roomCreated');
+      socket.chatData = await Chat.findByPk(chatId);
+    });
+
     socket.on('joinRoom', async (data) => {
       socket.broadcast.to(chatId).emit('userJoin', { username, userId });
     });
@@ -22,7 +27,7 @@ const initSocket = (io) => {
     socket.on('userJoin', async (data) => {
       socket.buddyUsername = data.username;
       socket.buddyUserId = data.userId;
-      socket.broadcast.to(chatId).emit('userJoin', data);
+      socket.chatData.update({ isOpen: false });
     });
 
     socket.on('chatMessage', async (data) => {
@@ -30,12 +35,13 @@ const initSocket = (io) => {
       socket.broadcast.to(chatId).emit('chatMessage', data);
     });
 
+    socket.on('userLeave', async (data) => {
+      socket.chatData.update({ isOpen: true });
+    });
+
     socket.on('disconnect', async (data) => {
       socket.broadcast.to(chatId).emit('userLeave', { username });
-      const chatData = await Chat.update(
-        { isOpen: false },
-        { where: { userId } }
-      );
+      if (socket.chatData) await socket.chatData.update({ isOpen: false });
     });
   });
 };

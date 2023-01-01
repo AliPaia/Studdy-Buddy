@@ -1,6 +1,7 @@
 const { User, Score, Chat } = require('../models');
 const { Op } = require('sequelize');
 
+// searches open chat rooms where the userData has a higher score
 const searchChat = async (userData) => {
   const chatData = await Chat.findAll({
     attributes: [

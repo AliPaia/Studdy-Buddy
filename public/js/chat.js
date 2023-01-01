@@ -4,15 +4,18 @@ const inputEl = document.querySelector('.input');
 const messagesEl = document.querySelector('.messages');
 const buddyEl = document.querySelector('#buddy');
 const subjectEl = document.querySelector('#subject');
+const myModal = new bootstrap.Modal('#myModal', {
+  backdrop: 'static',
+  keyboard: false,
+});
 
 const socket = io({ autoConnect: false });
+const { username, roomStatus } = chatEl.dataset;
 const chatId = parseInt(chatEl.dataset.chatId);
-const username = chatEl.dataset.username;
 const userId = parseInt(chatEl.dataset.userId);
 const isActive = chatEl.dataset.isActive == '1';
 
 socket.auth = { chatId, userId, username };
-socket.connect();
 
 const sendMessage = (event) => {
   event.preventDefault();
@@ -50,30 +53,44 @@ socket.on('chatMessage', (data) => {
 socket.on('userJoin', (data) => {
   buddyEl.textContent = data.username;
   addMessage(data.username + ' just joined the chat!', 'buddy');
-  socket.emit('joinedRoom');
+  socket.emit('userJoin', data);
 });
 
 socket.on('userLeave', (data) => {
   addMessage(data.username + ' has left the chat.', 'buddy');
   buddyEl.textContent = 'None';
   if (isActive) {
-    addMessage('Page will redirect in a few seconds');
+    socket.disconnect();
+    addMessage('Page will redirect in a few seconds', 'buddy');
     setTimeout(() => {
       document.location.replace('/');
     }, 5000);
   } else {
     editBuddyCard('none');
+    socket.emit('userLeave');
   }
 });
 
+socket.connect();
 addMessage("You have joined the chat as '" + username + "'.", 'self');
 
-if (buddyEl.textContent != 'None') {
+if (roomStatus == 'joined') {
   socket.emit('joinRoom');
+} else if (roomStatus == 'searching') {
+  myModal.show();
+
+  socket.on('roomCreated', async (data) => {
+    const response = await fetch('/api/chats/matching');
+    if (response.ok) {
+      document.location.replace('/chat');
+    }
+  });
+} else if (roomStatus == 'created') {
+  socket.emit('roomCreated');
 }
 
 formEl.addEventListener('submit', sendMessage, false);
 
 // window.onbeforeunload = () => {
-//   return "Are you sure you want to close the window?";
+//   return "Are you sure you want to leave this page?";
 // }

@@ -39,7 +39,7 @@ router.get('/assessment', withAuth, async (req, res) => {
 
 router.get('/chat', withAuth, async (req, res) => {
   const { userId } = req.session;
-  let chatData;
+  let chatData, roomStatus;
 
   try {
     const userData = await User.findByPk(userId, {
@@ -53,9 +53,11 @@ router.get('/chat', withAuth, async (req, res) => {
       const chatDataArr = await searchChat(userData);
       chatData =
         chatDataArr[Math.floor(Math.random() * (chatDataArr.length - 1))];
+      roomStatus = 'joined';
       if (!chatData) {
-        res.status(404).redirect('/');
-        return;
+        // if no rooms open then join their own room
+        chatData = { id: userData.chat.id };
+        roomStatus = 'searching';
       }
     } else {
       await Chat.update({ isOpen: true }, { where: { userId } });
@@ -63,6 +65,7 @@ router.get('/chat', withAuth, async (req, res) => {
         where: { userId: userData.id },
         raw: true,
       });
+      roomStatus = 'created';
     }
 
     res.render('chat', {
@@ -70,6 +73,7 @@ router.get('/chat', withAuth, async (req, res) => {
       // update values
       ...userData,
       chatData,
+      roomStatus,
     });
   } catch (err) {
     res.status(500).json(err);
