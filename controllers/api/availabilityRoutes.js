@@ -3,7 +3,7 @@ const withAuth = require('../../utils/auth');
 const { User, Availability } = require('../../models');
 const { request } = require('express');
 
-router.post('/profile',async (req, res) => {
+router.post('/',async (req, res) => {
     const userId = req.session.userId || 2;
     const loggedIn= req.session.loggedIn;
     const userData = await User.findByPk(userId, {

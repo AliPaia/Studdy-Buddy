@@ -48,21 +48,14 @@
     >
       <div class='card-header'>Availability</div>
       <div class='card-body text-primary'>
-        <h5 class='card-title'>Submit your Availability</h5>
         <form id='demoForm'>
           <fieldset>
-            <legend>Register here</legend>
+            <legend>Please pick your availability</legend>
             <table id='regDetails'>
-              <tr>
-                <td><label for='daysInput'>Days</label></td>
-                <td><input type='text' id='daysInput' /></td>
-                <section class="container">
-  <h2 class="py-2">Datepicker in Bootstrap 5</h2>
-  <form class="row">
-    <label for="date" class="col-1 col-form-label">Date</label>
+  <div class="row">
     <div class="col-5">
       <div class="input-group date" id="datepicker">
-        <input type="text" class="form-control" id="date"/>
+        <input type="text" class="form-control" value="1/2/23" id="date"/>
         <span class="input-group-append">
           <span class="input-group-text bg-light d-block">
             <i class="fa fa-calendar"></i>
@@ -70,12 +63,10 @@
         </span>
       </div>
     </div>
-  </form>
+  </div>
 </section>
               </tr>
-              <tr>
-                <td><label for='hoursInput'>Hours</label></td>
-                <td><input type='text' id='hoursInput' /></td>
+              <tr></tr>
                 <input type="time" class="form-control"  id="time" value="10:05 AM" />
               </tr>
               <tr>
@@ -88,17 +79,14 @@
           are available.</p>
       </div>
     </div>
-    <div class='card'>
-      <div class='card-body' style='max-width: 20rem; min-height: 100px;'>
+    {{!-- <div class='card'>
+      <div class='card-body' style='max-width: 20rem; min-height: 100px;'> --}}
         <a
-          href='#'
-          class='btn btn-primary active'
-          role='button'
-          data-bs-toggle='button'
-          aria-pressed='true'
+          href='/assessment'
+          class='btn btn-primary active col-md-3'
         >Edit Assesment</a>
-      </div>
-    </div>
+      {{!-- </div>
+    </div> --}}
   </div>
 
 </div>
