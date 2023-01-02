@@ -5,3 +5,8 @@
 //             $("#detailsBox").html(template({"nameValue":$('#nameInput').val(), "ageValue":$('#ageInput').val()}));
 //     });
 // });
+
+
+$(function(){
+    $('#datepicker').datepicker();
+  });
