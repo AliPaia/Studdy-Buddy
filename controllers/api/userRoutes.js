@@ -2,6 +2,23 @@ const router = require('express').Router();
 const withAuth = require('../../utils/auth');
 const { User, Score, Chat } = require('../../models');
 
+router.post('/', async (req, res) => {
+  try {
+    const userData = await User.create(req.body);
+    const scoreData = await Score.create({ userId: userData.id });
+    const chatData = await Chat.create({ userId: userData.id });
+
+    req.session.save(() => {
+      req.session.userId = userData.id;
+      req.session.loggedIn = true;
+
+      res.status(200).json(userData);
+    });
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
 // update user isActive status
 router.put('/', withAuth, async (req, res) => {
   const { userId } = req.session;
@@ -23,13 +40,13 @@ router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { username } });
     if (!userData) {
-      res.status(400).json({ message: 'Incorrect Username' });
+      res.status(400).json({ message: 'Something went wrong' });
       return;
     }
 
     const validPassword = userData.checkPassword(password);
     if (!validPassword) {
-      res.status(400).json({ message: 'Incorrect Password' });
+      res.status(400).json({ message: 'Something went wrong' });
       return;
     }
 
