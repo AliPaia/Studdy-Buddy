@@ -1,10 +1,43 @@
-<section
+<article
   id='chat-page'
   data-chat-id='{{chatData.id}}'
   data-user-id='{{id}}'
   data-username='{{username}}'
   data-is-active='{{isActive}}'
+  data-room-status='{{roomStatus}}'
 >
+  <!-- Searching for user Modal -->
+  <article
+    class='modal fade'
+    id='no-user-modal'
+    tabindex='-1'
+    aria-labelledby='no-user-title'
+    aria-hidden='true'
+  >
+    <section class='modal-dialog modal-dialog-centered'>
+      <section class='modal-content'>
+        <section class='modal-header'>
+          <h2 class='modal-title fs-5' id='no-user-title'>No user found</h2>
+        </section>
+        <section class='modal-body'>
+          There is currently no users to match you with. Page will automatically
+          refresh if a user is found
+        </section>
+        <section class='modal-footer'>
+          <a class='btn btn-secondary' href='/'>Go Home</a>
+          <button class='btn btn-primary' type='button' disabled>
+            <span
+              class='spinner-border spinner-border-sm'
+              role='status'
+              aria-hidden='true'
+            ></span>
+            Searching...
+          </button>
+        </section>
+      </section>
+    </section>
+  </article>
+  {{! second user information }}
   <section id='buddy-card' class='container text-center'>
     <section class='text-center'>
       <h2>Currently Connected Buddy:
@@ -14,7 +47,7 @@
             data-user-id='{{chatData.userId}}'
           >{{chatData.username}}</span>
         {{else}}
-          <span id='buddy' data-user-id='null'>None</span>
+          <span id='buddy' data-user-id='null'></span>
         {{/if}}
       </h2>
       <h2>Studdy Buddy Subject:
@@ -24,7 +57,7 @@
       </h2>
     </section>
   </section>
-
+  {{! chat window }}
   <section class='container' id='chat-window'>
     <ul class='messages'></ul>
     <form>
@@ -32,11 +65,13 @@
       <button>Send</button>
     </form>
   </section>
-</section>
+</article>
 
-<script
-  src='https://cdn.socket.io/4.5.4/socket.io.min.js'
-  integrity='sha384-/KNQL8Nu5gCHLqwqfQjA689Hhoqgi2S84SNUxC3roTe4EhJ9AfLkp8QiQcU8AMzI'
-  crossorigin='anonymous'
-></script>
-<script src='./js/chat.js'></script>
+{{#section 'script'}}
+  <script
+    src='https://cdn.socket.io/4.5.4/socket.io.min.js'
+    integrity='sha384-/KNQL8Nu5gCHLqwqfQjA689Hhoqgi2S84SNUxC3roTe4EhJ9AfLkp8QiQcU8AMzI'
+    crossorigin='anonymous'
+  ></script>
+  <script src='./js/chat.js'></script>
+{{/section}}

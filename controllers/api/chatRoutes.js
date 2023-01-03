@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const withAuth = require('../../utils/auth');
+const { searchChat } = require('../../utils/query');
 const { User, Score, Chat } = require('../../models');
 
 // update chat subject
-router.put('/', async (req, res) => {
+router.put('/', withAuth, async (req, res) => {
   const { userId } = req.session;
   const { subject } = req.body;
 
@@ -15,6 +16,33 @@ router.put('/', async (req, res) => {
     );
 
     res.json(response);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+router.get('/matching', withAuth, async (req, res) => {
+  const { userId } = req.session;
+  let chatData = {};
+
+  try {
+    const userData = await User.findByPk(userId, {
+      attributes: { exclude: 'password' },
+      include: [{ model: Score }, { model: Chat }],
+      raw: true,
+      nest: true,
+    });
+
+    const chatDataArr = await searchChat(userData);
+
+    chatData =
+      chatDataArr[Math.floor(Math.random() * (chatDataArr.length - 1))];
+    if (!chatData) {
+      // if no rooms open then join their own room
+      res.status(404).json({ message: 'no rooms found' });
+    }
+
+    res.json(chatData);
   } catch (err) {
     res.status(500).send(err);
   }
