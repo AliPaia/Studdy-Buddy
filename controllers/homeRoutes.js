@@ -129,21 +129,24 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/profile',async (req, res) => {
+router.get('/profile', async (req, res) => {
   const userId = req.session.userId || 2;
-  const loggedIn= req.session.loggedIn;
+  const loggedIn = req.session.loggedIn;
   const userData = await User.findByPk(userId, {
     attributes: { exclude: 'password' },
     raw: true,
     nest: true,
-     });
-     console.log(userData)
-     const timeData=await Availability.findAll({})
-     //console.log(timeData)
-const schedule=timeData.map(time=>time.get({plain:true}))
-console.log (schedule)
-  res.render('profile',{
-    userData, schedule, loggedIn
+  });
+  console.log(userData);
+  const timeData = await Availability.findAll({});
+  //console.log(timeData)
+  const schedule = timeData.map((time) => time.get({ plain: true }));
+  console.log(schedule);
+  res.render('profile', {
+    loggedIn: req.session.loggedIn,
+    userData,
+    schedule,
+    loggedIn,
   });
 });
 

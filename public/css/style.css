@@ -115,8 +115,8 @@ header {
   color: #fff;
   text-decoration: none;
 }
-.time-row{
-  display:flex;
-  flex-direction:row;
-  justify-content:space-around;
+.time-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }

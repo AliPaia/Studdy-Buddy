@@ -19,14 +19,15 @@ Availability.init(
         model: 'user',
         key: 'id',
       },
-    },date: {
+    },
+    date: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     time: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
   {
     sequelize,
