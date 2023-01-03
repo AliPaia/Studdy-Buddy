@@ -4,7 +4,12 @@ const inputEl = document.querySelector('.input');
 const messagesEl = document.querySelector('.messages');
 const buddyEl = document.querySelector('#buddy');
 const subjectEl = document.querySelector('#subject');
+const connectBtn = document.querySelector('#found-user-modal button');
 const noUserModal = new bootstrap.Modal('#no-user-modal', {
+  backdrop: 'static',
+  keyboard: false,
+});
+const foundUserModal = new bootstrap.Modal('#found-user-modal', {
   backdrop: 'static',
   keyboard: false,
 });
@@ -83,11 +88,13 @@ if (roomStatus == 'joined') {
   socket.on('roomCreated', async (data) => {
     const response = await fetch('/api/chats/matching');
     if (response.ok) {
-      document.location.replace('/chat');
+      noUserModal.hide();
+      foundUserModal.show();
     }
   });
 } else if (roomStatus == 'created') {
   socket.emit('roomCreated');
 }
 
-formEl.addEventListener('submit', sendMessage, false);
+formEl.addEventListener('submit', sendMessage);
+connectBtn.addEventListener('click', () => {document.location.replace('/chat');});
