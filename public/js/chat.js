@@ -5,6 +5,8 @@ const messagesEl = document.querySelector('.messages');
 const buddyEl = document.querySelector('#buddy');
 const subjectEl = document.querySelector('#subject');
 const connectBtn = document.querySelector('#found-user-modal button');
+const reOpenBtn = document.querySelector('#user-left-modal .choices');
+
 const noUserModal = new bootstrap.Modal('#no-user-modal', {
   backdrop: 'static',
   keyboard: false,
@@ -73,7 +75,7 @@ socket.on('userLeave', (data) => {
       document.location.replace('/');
     }, 5000);
   } else {
-    socket.emit('userLeave');
+    addMessage('If you wish to find another user, refresh the page', 'buddy');
   }
 });
 
@@ -87,6 +89,7 @@ if (roomStatus == 'joined') {
 
   socket.on('roomCreated', async (data) => {
     const response = await fetch('/api/chats/matching');
+
     if (response.ok) {
       noUserModal.hide();
       foundUserModal.show();
@@ -97,4 +100,6 @@ if (roomStatus == 'joined') {
 }
 
 formEl.addEventListener('submit', sendMessage);
-connectBtn.addEventListener('click', () => {document.location.replace('/chat');});
+connectBtn.addEventListener('click', () => {
+  document.location.replace('/chat');
+});

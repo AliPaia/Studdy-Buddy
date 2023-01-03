@@ -35,10 +35,6 @@ const initSocket = (io) => {
       socket.broadcast.to(chatId).emit('chatMessage', data);
     });
 
-    socket.on('userLeave', async (data) => {
-      socket.chatData.update({ isOpen: true });
-    });
-
     socket.on('disconnect', async (data) => {
       socket.broadcast.to(chatId).emit('userLeave', { username });
       if (socket.chatData) await socket.chatData.update({ isOpen: false });
