@@ -47,9 +47,11 @@ const addMessage = (message, user) => {
 
 const editBuddyCard = (user) => {
   if (user == '') {
-    buddyEl.dataset.userId = null;
+    buddyEl.href += user.username;
+    buddyEl.dataset.userId = '';
     buddyEl.textContent = '';
   } else {
+    buddyEl.href += user.username;
     buddyEl.dataset.userId = user.userId;
     buddyEl.textContent = user.username;
   }

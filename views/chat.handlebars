@@ -64,14 +64,11 @@
   <section id='buddy-card' class='container text-center'>
     <section class='text-center'>
       <h2>Currently Connected Buddy:
-        {{#if isActive}}
-          <span
-            id='buddy'
-            data-user-id='{{chatData.userId}}'
-          >{{chatData.username}}</span>
-        {{else}}
-          <span id='buddy' data-user-id='null'></span>
-        {{/if}}
+        <a
+          href='/user/{{chatData.username}}'
+          id='buddy'
+          data-user-id='{{chatData.userId}}'
+        >{{chatData.username}}</a>
       </h2>
       <h2>Studdy Buddy Subject:
         <span id='subject' data-subject='{{chatData.subject}}'>{{formatSubject
