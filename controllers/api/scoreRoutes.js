@@ -2,9 +2,8 @@ const router = require('express').Router();
 const { User, Score } = require('../../models');
 const { UUID } = require('sequelize');
 
-router.post('/', async (req, res) => {
-   // const { userId } = req.session 
-   const userId = 1
+router.put('/', async (req, res) => {
+   const { userId } = req.session 
    try{
         const score = await Score.update({ ...req.body,}, {where: {
             userId
