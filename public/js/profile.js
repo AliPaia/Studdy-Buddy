@@ -32,8 +32,8 @@ async function grabDate(event){
     await fetch(`/api/availability`, {
         method: 'POST',
         body: JSON.stringify({
-          date,
-          time,
+         date: date,
+         time: time,
         }),
         headers: { 'Content-Type': 'application/json' },
       });

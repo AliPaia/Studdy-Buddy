@@ -14,13 +14,16 @@ Availability.init(
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      unique: true,
+      //unique: true,
       references: {
         model: 'user',
         key: 'id',
       },
+    },date: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    availability: {
+    time: {
         type: DataTypes.STRING,
         allowNull: false,
       },

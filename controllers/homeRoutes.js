@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const withAuth = require('../utils/auth');
 const { searchChat } = require('../utils/query');
-const { User, Score, Chat } = require('../models');
+const { User, Score, Chat, Availability } = require('../models');
 
 router.get('/', async (req, res) => {
   const { loggedIn, userId } = req.session;
@@ -138,8 +138,12 @@ router.get('/profile',async (req, res) => {
     nest: true,
      });
      console.log(userData)
+     const timeData=await Availability.findAll({})
+     //console.log(timeData)
+const schedule=timeData.map(time=>time.get({plain:true}))
+console.log (schedule)
   res.render('profile',{
-    userData, loggedIn
+    userData, schedule, loggedIn
   });
 });
 
