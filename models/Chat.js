@@ -25,7 +25,7 @@ Chat.init(
       validate: {
         isIn: [[1, 2, 3, 4, 5]],
       },
-      defaultValue: '1',
+      defaultValue: 1,
     },
     isOpen: {
       type: DataTypes.BOOLEAN,

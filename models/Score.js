@@ -14,27 +14,27 @@ Score.init(
     vanillaJs: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: '1',
+      defaultValue: 1,
     },
     mySql: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: '1',
+      defaultValue: 1,
     },
     nodeJs: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: '1',
+      defaultValue: 1,
     },
     express: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: '1',
+      defaultValue: 1,
     },
     oop: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: '1',
+      defaultValue: 1,
     },
     userId: {
       type: DataTypes.INTEGER,

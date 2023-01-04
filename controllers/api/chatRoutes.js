@@ -4,7 +4,7 @@ const { searchChat } = require('../../utils/query');
 const { User, Score, Chat } = require('../../models');
 
 // update chat subject
-router.put('/', withAuth, async (req, res) => {
+router.put('/subject', withAuth, async (req, res) => {
   const { userId } = req.session;
   const { subject } = req.body;
 

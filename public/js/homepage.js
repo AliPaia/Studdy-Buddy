@@ -12,7 +12,7 @@ const findBuddy = async (event) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ isActive: false }),
       }),
-      fetch('/api/chats', {
+      fetch('/api/chats/subject', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ subject }),
