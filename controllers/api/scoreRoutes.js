@@ -1,9 +1,8 @@
 const router = require('express').Router();
 const { User, Score } = require('../../models');
 
-router.put('/', async (req, res) => {
+router.post('/', async (req, res) => {
   const { userId } = req.session;
-
   try {
     const score = await Score.update({ ...req.body }, { where: { userId } });
     res.status(200).json(score);

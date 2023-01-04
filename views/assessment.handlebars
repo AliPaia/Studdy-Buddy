@@ -8,8 +8,13 @@
 </header>
 
 <!--Assessments questions as well as the 1-5 scale buttons-->
-<form action='/' method='push'>
-  <p>Vanilla JS- functions, looping, scope, es6 syntax</p>
+<iframe name='dummyframe' id='dummyframe' style='display: none;'></iframe>
+<form
+  action='http://localhost:3001/api/scores'
+  target='dummyframe'
+  method='post'
+>
+  <p>Vanilla JS- functions, looping, scope, es6 syntax etc</p>
   <section class='form-check form-check-inline'>
     <input
       class='form-check-input'
@@ -67,7 +72,7 @@
     <input
       class='form-check-input'
       type='radio'
-      name='mysql'
+      name='mySql'
       id='inlineRadio1'
       value='1'
       checked
@@ -78,7 +83,7 @@
     <input
       class='form-check-input'
       type='radio'
-      name='mysql'
+      name='mySql'
       id='inlineRadio2'
       value='2'
     />
@@ -88,7 +93,7 @@
     <input
       class='form-check-input'
       type='radio'
-      name='mysql'
+      name='mySql'
       id='inlineRadio1'
       value='3'
     />
@@ -98,7 +103,7 @@
     <input
       class='form-check-input'
       type='radio'
-      name='mysql'
+      name='mySql'
       id='inlineRadio2'
       value='4'
     />
@@ -108,7 +113,7 @@
     <input
       class='form-check-input'
       type='radio'
-      name='mysql'
+      name='mySql'
       id='inlineRadio1'
       value='5'
     />
@@ -275,4 +280,4 @@
   </section>
 
   <!--Submit button-->
-  <div><input type='submit' value='Submit' /></div></form>
+  <section><input type='submit' value='Update' /></section></form>
