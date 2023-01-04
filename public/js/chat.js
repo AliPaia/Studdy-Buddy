@@ -1,4 +1,4 @@
-const ding = new Audio('./audio/ding.mp3')
+const ding = new Audio('./audio/ding.mp3');
 const formEl = document.querySelector('form');
 const chatEl = document.querySelector('#chat-page');
 const inputEl = document.querySelector('.input');
@@ -92,9 +92,9 @@ if (roomStatus == 'joined') {
   noUserModal.show();
 
   socket.on('roomCreated', async (data) => {
-    if(searching){
+    if (searching) {
       const response = await fetch('/api/chats/matching');
-  
+
       if (response.ok) {
         searching = false;
         noUserModal.hide();
