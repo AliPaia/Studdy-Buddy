@@ -8,8 +8,9 @@
 </header>
 
 <!--Assessments questions as well as the 1-5 scale buttons-->
-<form action='/' method='push'>
-  <p>Vanilla JS- functions, looping, scope, es6 syntax</p>
+<iframe name='dummyframe' id='dummyframe' style='display: none;'></iframe>
+<form action='/api/scores' target='dummyframe' method='post'>
+  <p>Vanilla JS- functions, looping, scope, es6 syntax etc</p>
   <section class='form-check form-check-inline'>
     <input
       class='form-check-input'
@@ -275,4 +276,4 @@
   </section>
 
   <!--Submit button-->
-  <div><input type='submit' value='Submit' /></div></form>
+  <section><input type='submit' value='Update' /></section></form>
