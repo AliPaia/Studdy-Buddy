@@ -1,5 +1,11 @@
 const profileLoginBtn = document.getElementById('profile-login');
 const createAccountBtn = document.getElementById('create-account');
+const tooltipTriggerList = document.querySelectorAll(
+  '[data-bs-toggle="tooltip"]'
+);
+const tooltipList = [...tooltipTriggerList].map(
+  (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
+);
 
 profileLoginBtn.addEventListener('click', async function (event) {
   event.preventDefault();
@@ -21,7 +27,8 @@ profileLoginBtn.addEventListener('click', async function (event) {
   if (response.ok) {
     document.location.replace('/profile');
   } else {
-    alert(response.statusText);
+    const { message } = await response.json();
+    console.log(message);
   }
 });
 
@@ -45,6 +52,14 @@ createAccountBtn.addEventListener('click', async function (event) {
   if (response.ok) {
     document.location.replace('/assessment');
   } else {
-    alert(response.statusText);
+    const [error] = (await response.json()).errors;
+    const { validatorKey } = error;
+    if (validatorKey == 'len') {
+      console.log('password must be 8 in length');
+    } else if (validatorKey == 'not_unique') {
+      console.log('username is already taken');
+    } else {
+      console.log('Error');
+    }
   }
 });
