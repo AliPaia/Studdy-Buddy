@@ -1,11 +1,18 @@
 const profileLoginBtn = document.getElementById('profile-login');
 const createAccountBtn = document.getElementById('create-account');
-const tooltipTriggerList = document.querySelectorAll(
-  '[data-bs-toggle="tooltip"]'
-);
-const tooltipList = [...tooltipTriggerList].map(
-  (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
-);
+const errorWarningEl = document.querySelector('#error-warning');
+const tooltipTrigger = document.querySelector('[data-bs-toggle="tooltip"]');
+const tooltipList = new bootstrap.Tooltip(tooltipTrigger);
+
+const showAlert = (message) => {
+  const alertEl = document.createElement('section');
+  errorWarningEl.textContent = '';
+
+  alertEl.classList.add('alert', 'alert-warning', 'alert-dismissible');
+  alertEl.innerHTML = ` <b>${message}</b>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`;
+  errorWarningEl.append(alertEl);
+};
 
 profileLoginBtn.addEventListener('click', async function (event) {
   event.preventDefault();
@@ -28,7 +35,7 @@ profileLoginBtn.addEventListener('click', async function (event) {
     document.location.replace('/profile');
   } else {
     const { message } = await response.json();
-    console.log(message);
+    showAlert(message);
   }
 });
 
@@ -55,9 +62,9 @@ createAccountBtn.addEventListener('click', async function (event) {
     const [error] = (await response.json()).errors;
     const { validatorKey } = error;
     if (validatorKey == 'len') {
-      console.log('password must be 8 in length');
+      showAlert('Password must be 8 in length');
     } else if (validatorKey == 'not_unique') {
-      console.log('username is already taken');
+      showAlert('Username is already taken');
     } else {
       console.log('Error');
     }
