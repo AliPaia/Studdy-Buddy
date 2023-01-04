@@ -1,3 +1,4 @@
+const ding = new Audio('./audio/ding.mp3')
 const formEl = document.querySelector('form');
 const chatEl = document.querySelector('#chat-page');
 const inputEl = document.querySelector('.input');
@@ -87,14 +88,19 @@ addMessage("You have joined the chat as '" + username + "'.", 'self');
 if (roomStatus == 'joined') {
   socket.emit('joinRoom');
 } else if (roomStatus == 'searching') {
+  let searching = true;
   noUserModal.show();
 
   socket.on('roomCreated', async (data) => {
-    const response = await fetch('/api/chats/matching');
-
-    if (response.ok) {
-      noUserModal.hide();
-      foundUserModal.show();
+    if(searching){
+      const response = await fetch('/api/chats/matching');
+  
+      if (response.ok) {
+        searching = false;
+        noUserModal.hide();
+        foundUserModal.show();
+        ding.play();
+      }
     }
   });
 } else if (roomStatus == 'created') {
