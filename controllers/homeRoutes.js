@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/assessment', async (req, res) => {
+router.get('/assessment', withAuth, async (req, res) => {
   try {
     res.render('assessment', {
       loggedIn: req.session.loggedIn,
@@ -37,10 +37,9 @@ router.get('/assessment', async (req, res) => {
   }
 });
 
-router.get('/chat', async (req, res) => {
-  const userId = req.session.userId || 1;
-  const subject = req.body.subject || 'vanillaJs' || null; // modify?
-  let chatData;
+router.get('/chat', withAuth, async (req, res) => {
+  const { userId } = req.session;
+  let chatData, roomStatus;
 
   try {
     const userData = await User.findByPk(userId, {
@@ -51,20 +50,21 @@ router.get('/chat', async (req, res) => {
     });
 
     if (userData.isActive) {
-      chatData = await searchChat(userData);
+      const chatDataArr = await searchChat(userData);
+      chatData = chatDataArr[Math.floor(Math.random() * chatDataArr.length)];
+      roomStatus = 'joined';
+      if (!chatData) {
+        // if no rooms open then join their own room
+        chatData = { id: userData.chat.id };
+        roomStatus = 'searching';
+      }
     } else {
-      await Chat.update(
-        { isOpen: true, subject, subjectScore: userData.score[subject] },
-        {
-          where: {
-            userId: userData.id,
-          },
-        }
-      );
+      await Chat.update({ isOpen: true }, { where: { userId } });
       chatData = await Chat.findOne({
         where: { userId: userData.id },
         raw: true,
       });
+      roomStatus = 'created';
     }
 
     res.render('chat', {
@@ -72,48 +72,7 @@ router.get('/chat', async (req, res) => {
       // update values
       ...userData,
       chatData,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-// route for testing purposes, merge with regular chat route later
-router.get('/buddychat', async (req, res) => {
-  const userId = req.session.userId || 2;
-  const subject = req.body.subject || null;
-  let chatData;
-
-  try {
-    const userData = await User.findByPk(userId, {
-      attributes: { exclude: 'password' },
-      include: [{ model: Score }, { model: Chat }],
-      raw: true,
-      nest: true,
-    });
-    // circumvent isActive but this is done before hitting route
-    User.update({ isActive: true }, { where: { id: userData.id } });
-
-    if (userData.isActive) {
-      const chatDataArr = await searchChat(userData);
-      chatData =
-        chatDataArr[Math.floor(Math.random() * (chatDataArr.length - 1))];
-    } else {
-      chatData = await Chat.update(
-        { isOpen: true, subject, subjectScore: userData.score[subject] },
-        {
-          where: {
-            userId: userData.id,
-          },
-        }
-      );
-    }
-
-    res.render('chat', {
-      loggedIn: req.session.loggedIn,
-      // update values
-      ...userData,
-      chatData,
+      roomStatus,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -129,25 +88,8 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/profile', async (req, res) => {
-  const userId = req.session.userId || 2;
-  const loggedIn = req.session.loggedIn;
-  const userData = await User.findByPk(userId, {
-    attributes: { exclude: 'password' },
-    raw: true,
-    nest: true,
-  });
-  console.log(userData);
-  const timeData = await Availability.findAll({});
-  //console.log(timeData)
-  const schedule = timeData.map((time) => time.get({ plain: true }));
-  console.log(schedule);
-  res.render('profile', {
-    loggedIn: req.session.loggedIn,
-    userData,
-    schedule,
-    loggedIn,
-  });
+router.get('/profile', withAuth, (req, res) => {
+  res.render('profile');
 });
 
 module.exports = router;

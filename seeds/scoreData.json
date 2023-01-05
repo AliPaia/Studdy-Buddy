@@ -25,7 +25,7 @@
   },
   {
     "vanillaJs": "4",
-    "mySql": "4",
+    "mySql": "5",
     "nodeJs": "1",
     "express": "2",
     "oop": "3",

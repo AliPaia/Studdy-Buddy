@@ -1,72 +1,93 @@
-const form = document.querySelector('form');
-const chat = document.querySelector('#chat');
-const input = document.querySelector('.input');
-const messages = document.querySelector('.messages');
+const formEl = document.querySelector('form');
+const chatEl = document.querySelector('#chat-page');
+const inputEl = document.querySelector('.input');
+const messagesEl = document.querySelector('.messages');
 const buddyEl = document.querySelector('#buddy');
-const subject = document.querySelector('#subject');
+const subjectEl = document.querySelector('#subject');
+const noUserModal = new bootstrap.Modal('#no-user-modal', {
+  backdrop: 'static',
+  keyboard: false,
+});
 
 const socket = io({ autoConnect: false });
-const username = chat.dataset.username;
-const userId = parseInt(chat.dataset.userId);
-const isActive = chat.dataset.isActive == 'true';
+const { username, roomStatus } = chatEl.dataset;
+const chatId = parseInt(chatEl.dataset.chatId);
+const userId = parseInt(chatEl.dataset.userId);
+const isActive = chatEl.dataset.isActive == '1';
 
-socket.auth = { userId, username };
-socket.connect();
+socket.auth = { chatId, userId, username };
 
 const sendMessage = (event) => {
   event.preventDefault();
 
-  addMessage(username + ': ' + input.value);
+  addMessage(username + ': ' + inputEl.value, 'self');
 
   socket.emit('chatMessage', {
-    message: input.value,
+    message: inputEl.value,
   });
 
-  input.value = '';
+  inputEl.value = '';
   return false;
 };
 
-const addMessage = (message) => {
+const addMessage = (message, user) => {
   const li = document.createElement('li');
+  li.classList.add(user);
   li.innerHTML = message;
-  messages.appendChild(li);
-  window.scrollTo(0, document.body.scrollHeight);
+  messagesEl.appendChild(li);
+  li.scrollIntoView();
 };
 
 const editBuddyCard = (user) => {
-  if (user == 'none') {
+  if (user == '') {
     buddyEl.dataset.userId = null;
-    buddyEl.textContent = 'None';
+    buddyEl.textContent = '';
   } else {
+    buddyEl.dataset.userId = user.userId;
+    buddyEl.textContent = user.username;
   }
 };
 
 socket.on('chatMessage', (data) => {
-  addMessage(data.username + ': ' + data.message);
+  addMessage(data.username + ': ' + data.message, 'buddy');
 });
 
 socket.on('userJoin', (data) => {
-  buddyEl.textContent = data.username;
-  addMessage(data.username + ' just joined the chat!');
-  socket.emit('joinedRoom');
+  editBuddyCard(data);
+  addMessage(data.username + ' just joined the chat!', 'buddy');
+  socket.emit('userJoin', data);
 });
 
 socket.on('userLeave', (data) => {
-  addMessage(data.username + ' has left the chat.');
-  buddyEl.textContent = 'None';
-  isActive ? document.location.replace('/') : editBuddyCard('none');
+  editBuddyCard('');
+  addMessage(data.username + ' has left the chat.', 'buddy');
+  if (isActive) {
+    socket.disconnect();
+    addMessage('Page will redirect in a few seconds', 'buddy');
+    setTimeout(() => {
+      document.location.replace('/');
+    }, 5000);
+  } else {
+    socket.emit('userLeave');
+  }
 });
 
-addMessage("You have joined the chat as '" + username + "'.");
+socket.connect();
+addMessage("You have joined the chat as '" + username + "'.", 'self');
 
-if (buddyEl.textContent == 'None') {
-  socket.emit('createRoom');
-} else {
-  socket.emit('joinRoom', { roomId: 1 });
+if (roomStatus == 'joined') {
+  socket.emit('joinRoom');
+} else if (roomStatus == 'searching') {
+  noUserModal.show();
+
+  socket.on('roomCreated', async (data) => {
+    const response = await fetch('/api/chats/matching');
+    if (response.ok) {
+      document.location.replace('/chat');
+    }
+  });
+} else if (roomStatus == 'created') {
+  socket.emit('roomCreated');
 }
 
-form.addEventListener('submit', sendMessage, false);
-
-// window.onbeforeunload = () => {
-//   return "Are you sure you want to close the window?";
-// }
+formEl.addEventListener('submit', sendMessage, false);
