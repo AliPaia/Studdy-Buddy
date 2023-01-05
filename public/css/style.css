@@ -137,6 +137,12 @@ header {
   text-decoration: none;
 }
 
+.Nameheader {
+  justify-content: right;
+  width: 50rem;
+
+}
+
 @media screen and (max-width: 500px) {
   .btn-grad {
     padding: 0;

@@ -90,7 +90,7 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/profile', withAuth, (req, res) => {
-  res.render('profile');
+  res.render('profile', {loggedIn: req.session.loggedIn});
 });
 
 router.get('/user/:username', async (req, res) => {
