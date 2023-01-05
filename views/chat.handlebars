@@ -23,16 +23,39 @@
           There is currently no users to match you with. Page will automatically
           refresh if a user is found
         </section>
-        <section class='modal-footer'>
+        <section class='modal-footer choices'>
           <a class='btn btn-secondary' href='/'>Go Home</a>
           <button class='btn btn-primary' type='button' disabled>
             <span
               class='spinner-border spinner-border-sm'
               role='status'
               aria-hidden='true'
-            ></span>
-            Searching...
+            ></span>Searching...
           </button>
+        </section>
+      </section>
+    </section>
+  </article>
+  {{! User found Modal }}
+  <article
+    class='modal fade'
+    id='found-user-modal'
+    tabindex='-1'
+    aria-labelledby='found-user-title'
+    aria-hidden='true'
+  >
+    <section class='modal-dialog modal-dialog-centered'>
+      <section class='modal-content'>
+        <section class='modal-header'>
+          <h2 class='modal-title fs-5' id='found-user-title'>User found</h2>
+        </section>
+        <section class='modal-body'>
+          A user was found. Click on "Connect" to to connect with them. Room may
+          fill up before you connect.
+        </section>
+        <section class='modal-footer choices'>
+          <a class='btn btn-secondary' href='/'>Go Home</a>
+          <button class='btn btn-primary' type='button'>Connect</button>
         </section>
       </section>
     </section>
@@ -41,14 +64,11 @@
   <section id='buddy-card' class='container text-center'>
     <section class='text-center'>
       <h2>Currently Connected Buddy:
-        {{#if isActive}}
-          <span
-            id='buddy'
-            data-user-id='{{chatData.userId}}'
-          >{{chatData.username}}</span>
-        {{else}}
-          <span id='buddy' data-user-id='null'></span>
-        {{/if}}
+        <a
+          href='/user/{{chatData.username}}'
+          id='buddy'
+          data-user-id='{{chatData.userId}}'
+        >{{chatData.username}}</a>
       </h2>
       <h2>Studdy Buddy Subject:
         <span id='subject' data-subject='{{chatData.subject}}'>{{formatSubject

@@ -22,17 +22,17 @@
   </head>
 
   <body>
-    {{! made a sticker that can be added in a container on top of the body (*optional) in image folder }}
     <header>
       <nav class='container text-center'>
         <h1>Studdy Buddy</h1>
         <section id='nav-btn' class='container'>
           <a class='btn btn-grad' href='/'>Home</a>
           {{#if loggedIn}}
+            <a class='btn btn-grad' href='/profile'>My Profile</a>
             <a class='btn btn-grad' href='/assessment'>Update assessments</a>
             <button id='logout-btn' class='btn btn-grad'>Logout</button>
           {{else}}
-            <a class='btn btn-grad' href='/login'>Login</a>
+            <a class='btn btn-grad' href='/login'>Login Page</a>
           {{/if}}
         </section>
       </nav>

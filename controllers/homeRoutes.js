@@ -61,6 +61,7 @@ router.get('/chat', withAuth, async (req, res) => {
     } else {
       await Chat.update({ isOpen: true }, { where: { userId } });
       chatData = await Chat.findOne({
+        attributes: ['id', 'subject'],
         where: { userId: userData.id },
         raw: true,
       });
@@ -90,6 +91,12 @@ router.get('/login', (req, res) => {
 
 router.get('/profile', withAuth, (req, res) => {
   res.render('profile');
+});
+
+router.get('/user/:username', async (req, res) => {
+  const { username } = req.params;
+  const userData = await User.findOne({ where: { username } });
+  res.render('profile', { userData });
 });
 
 module.exports = router;
