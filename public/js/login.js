@@ -1,5 +1,18 @@
 const profileLoginBtn = document.getElementById('profile-login');
 const createAccountBtn = document.getElementById('create-account');
+const errorWarningEl = document.querySelector('#error-warning');
+const tooltipTrigger = document.querySelector('[data-bs-toggle="tooltip"]');
+const tooltipList = new bootstrap.Tooltip(tooltipTrigger);
+
+const showAlert = (message) => {
+  const alertEl = document.createElement('section');
+  errorWarningEl.textContent = '';
+
+  alertEl.classList.add('alert', 'alert-warning', 'alert-dismissible');
+  alertEl.innerHTML = ` <b>${message}</b>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`;
+  errorWarningEl.append(alertEl);
+};
 
 profileLoginBtn.addEventListener('click', async function (event) {
   event.preventDefault();
@@ -21,7 +34,8 @@ profileLoginBtn.addEventListener('click', async function (event) {
   if (response.ok) {
     document.location.replace('/profile');
   } else {
-    alert(response.statusText);
+    const { message } = await response.json();
+    showAlert(message);
   }
 });
 
@@ -45,6 +59,14 @@ createAccountBtn.addEventListener('click', async function (event) {
   if (response.ok) {
     document.location.replace('/assessment');
   } else {
-    alert(response.statusText);
+    const [error] = (await response.json()).errors;
+    const { validatorKey } = error;
+    if (validatorKey == 'len') {
+      showAlert('Password must be 8 in length');
+    } else if (validatorKey == 'not_unique') {
+      showAlert('Username is already taken');
+    } else {
+      console.log('Error');
+    }
   }
 });
