@@ -176,8 +176,11 @@ body {
 
 .schedule {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .schedule li {
+  width: 40%;
   list-style: none;
 }

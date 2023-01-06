@@ -97,7 +97,7 @@ router.get('/profile', withAuth, async (req, res) => {
     order: [['date', 'DESC']],
     raw: true,
   });
-  
+
   res.render('profile', { loggedIn, userData, scheduleData });
 });
 

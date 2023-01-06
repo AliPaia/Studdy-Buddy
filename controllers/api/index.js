@@ -7,6 +7,6 @@ const scheduleRoutes = require('./scheduleRoutes');
 router.use('/users', userRoutes);
 router.use('/chats', chatRoutes);
 router.use('/scores', scoreRoutes);
-router.use('/schedule', scheduleRoutes);
+router.use('/schedules', scheduleRoutes);
 
 module.exports = router;
