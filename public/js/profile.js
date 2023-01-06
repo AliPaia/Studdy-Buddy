@@ -1,11 +1,3 @@
-// $(document).ready( function() {
-// var templateSource = $("#details-template").html();
-// var template = Handlebars.compile(templateSource);
-//     $('#submitButton').click(function(){
-//             $("#detailsBox").html(template({"nameValue":$('#nameInput').val(), "ageValue":$('#ageInput').val()}));
-//     });
-// });
-
 $(function () {
   $('#date-picker').datepicker({
     onSelect: function () {
@@ -14,12 +6,6 @@ $(function () {
     },
   });
 });
-
-document.getElementById('date');
-
-//var date=$("#date").datepicker("getDate").val()
-//var date=dateEl.value
-//console.log(dateEl)
 
 async function grabDate(event) {
   event.preventDefault();
