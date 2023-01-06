@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const withAuth = require('../utils/auth');
 const { searchChat } = require('../utils/query');
-const { User, Score, Chat } = require('../models');
+const { User, Score, Chat, Availability } = require('../models');
 
 router.get('/', async (req, res) => {
   const { loggedIn, userId } = req.session;
@@ -90,7 +90,7 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/profile', withAuth, (req, res) => {
-  res.render('profile');
+  res.render('profile', {loggedIn: req.session.loggedIn});
 });
 
 router.get('/user/:username', async (req, res) => {

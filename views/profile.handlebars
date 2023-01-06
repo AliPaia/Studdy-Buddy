@@ -1,6 +1,6 @@
 <div class='container'>
   <div class='row Nameheader'>
-    <div class='col-sm-2'>
+    {{!-- <div class='col-sm-2'>
       <div class='card'>
         <div class='card-body'>
           <h5 class='card-title'>Online status</h5>
@@ -32,11 +32,11 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
     <div class='col-sm-6 offset-sm-1'>
       <div class='card'>
         <div class='card-body'>
-          <h5 class='card-title'>Student Name</h5>
+          <h5 class='card-title'>{{userData.username}}</h5>
         </div>
       </div>
     </div>
@@ -48,18 +48,34 @@
     >
       <div class='card-header'>Availability</div>
       <div class='card-body text-primary'>
-        <h5 class='card-title'>Submit your Availability</h5>
         <form id='demoForm'>
           <fieldset>
-            <legend>Register here</legend>
+            <legend>Please pick your availability</legend>
             <table id='regDetails'>
+              <div class='row'>
+                <div class='col-5'>
+                  <div class='input-group date' id='datepicker'>
+                    <input
+                      type='text'
+                      class='form-control'
+                      value='1/2/23'
+                      id='date'
+                    />
+                    <span class='input-group-append'>
+                      <span class='input-group-text bg-light d-block'>
+                        <i class='fa fa-calendar'></i>
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
               <tr>
-                <td><label for='daysInput'>Days</label></td>
-                <td><input type='text' id='daysInput' /></td>
-              </tr>
-              <tr>
-                <td><label for='hoursInput'>Hours</label></td>
-                <td><input type='text' id='hoursInput' /></td>
+                <input
+                  type='time'
+                  class='form-control'
+                  id='time'
+                  value='10:05 AM'
+                />
               </tr>
               <tr>
                 <td colspan='2'><input type='submit' id='submitButton' /></td>
@@ -70,18 +86,16 @@
         <p class='card-text'>Please add the days of the week and hours that you
           are available.</p>
       </div>
+      <ul class='list-group'>
+        {{#each schedule}}
+          <li class='list-group-item time-row'>
+            <h3>date:</h3><h3>{{date}}</h3>
+            <h3>time:</h3><h3>{{time}}</h3>
+          </li>
+        {{/each}}
+      </ul>
     </div>
-    <div class='card'>
-      <div class='card-body' style='max-width: 20rem; min-height: 100px;'>
-        <a
-          href='#'
-          class='btn btn-primary active'
-          role='button'
-          data-bs-toggle='button'
-          aria-pressed='true'
-        >Edit Assessment</a>
-      </div>
-    </div>
+    
   </div>
 
 </div>
