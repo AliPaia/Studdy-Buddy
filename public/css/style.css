@@ -13,7 +13,8 @@
 }
 
 h1,
-h2 {
+h2,
+h3 {
   color: var(--secondary-color);
 }
 
@@ -23,8 +24,9 @@ body {
   background: var(--pencil-yellow);
 }
 
-header {
+.buddy-card {
   margin: 5px;
+  padding: 5px;
   border: var(--border-styles);
   background: var(--pencil-pink);
 }
@@ -168,4 +170,14 @@ header {
 
 #update-btn {
   margin-top: 10px;
+}
+
+/* Profile */
+
+.schedule {
+  display: flex;
+}
+
+.schedule li {
+  list-style: none;
 }
