@@ -1,5 +1,6 @@
 const DateTime = luxon.DateTime;
 const scheduleEl = document.querySelector('#add-schedule');
+const scheduleArr = document.querySelectorAll('.schedule-slot');
 
 // calender
 $(function () {
@@ -25,7 +26,7 @@ async function grabDate(event) {
   };
   const dt = DateTime.fromObject(dateObj);
 
-  await fetch('/api/schedules', {
+  const response = await fetch('/api/schedules', {
     method: 'POST',
     body: JSON.stringify({
       date: dt,
@@ -33,17 +34,28 @@ async function grabDate(event) {
     headers: { 'Content-Type': 'application/json' },
   });
 
-  const response = await fetch('/api/schedules', {
-    method: 'GET',
+
+  if (response.ok) {
+    document.location.reload();
+  }
+}
+
+const deleteSchedule = async (event) => {
+  event.preventDefault();
+  const { id } = event.target.dataset;
+
+  const response = await fetch('api/schedules/' + id, {
+    method: 'DELETE',
     headers: { 'Content-Type': 'application/json' },
   });
 
-  const scheduleData = await response.json();
-  console.log(scheduleData[0].date);
-  console.log(DateTime.fromISO(scheduleData[0].date));
-  document.location.reload();
-}
+  if (response.ok) {
+    document.location.reload();
+  }
+};
 
 scheduleEl.addEventListener('submit', grabDate);
-
 scheduleEl.querySelector('#date').value = DateTime.now().toFormat('LL/dd/yyyy');
+scheduleArr.forEach((schedule) => {
+  schedule.querySelector('button').addEventListener('click', deleteSchedule);
+});

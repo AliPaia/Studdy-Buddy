@@ -64,8 +64,9 @@
     <h2 class='text-center'><u>{{userData.username}}'s available times</u></h2>
     <ul class='schedule container'>
       {{#each scheduleData}}
-        <li class='buddy-card'>
+        <li class='buddy-card schedule-slot'>
           <h3>{{date}}</h3>
+          <button data-id='{{id}}' class='btn btn-grad'>delete</button>
         </li>
       {{/each}}
     </ul>
