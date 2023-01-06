@@ -68,6 +68,13 @@ body {
   text-decoration: none;
 }
 
+/* homepage */
+
+#join-room table {
+  border: var(--border-styles);
+  background-color: var(--pencil-silver);
+}
+
 /* chat css */
 
 #buddy-window {
