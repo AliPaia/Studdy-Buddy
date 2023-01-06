@@ -34,7 +34,6 @@ async function grabDate(event) {
     headers: { 'Content-Type': 'application/json' },
   });
 
-
   if (response.ok) {
     document.location.reload();
   }
