@@ -94,17 +94,29 @@ router.get('/profile', withAuth, async (req, res) => {
   const userData = await User.findByPk(userId, { raw: true });
   const scheduleData = await Schedule.findAll({
     where: { userId },
-    order: [['date', 'DESC']],
+    order: [['date', 'ASC']],
     raw: true,
   });
 
-  res.render('profile', { loggedIn, userData, scheduleData });
+  res.render('profile', { loggedIn, userData, scheduleData, ownProfile: true });
 });
 
 router.get('/user/:username', async (req, res) => {
+  const { loggedIn } = req.session;
   const { username } = req.params;
-  const userData = await User.findOne({ where: { username } });
-  res.render('profile', { userData });
+  const userData = await User.findOne({ where: { username }, raw: true });
+  const scheduleData = await Schedule.findAll({
+    where: { userId: userData.id },
+    order: [['date', 'ASC']],
+    raw: true,
+  });
+
+  res.render('profile', {
+    loggedIn,
+    userData,
+    scheduleData,
+    ownProfile: false,
+  });
 });
 
 module.exports = router;

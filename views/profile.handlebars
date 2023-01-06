@@ -13,54 +13,63 @@
   <section class='row buddy-card text-center'>
     <h2>User {{userData.username}}'s Profile</h2>
   </section>
-  <section class='row buddy-card'>
-    <form id='add-schedule'>
-      <fieldset>
-        <legend><h2>Add a date to your available schedule</h2></legend>
-        <table>
-          <div class='row'>
-            <div class='col-5'>
-              <div class='input-group date' id='date-picker'>
-                <input
-                  type='text'
-                  class='form-control'
-                  value='01/02/2023'
-                  id='date'
-                />
-                <span class='input-group-append'>
-                  <span class='input-group-text bg-light d-block'>
-                    <i class='fa fa-calendar'></i>
+  {{#if ownProfile}}
+    <article class='row container m-0'>
+      <section class='buddy-card col'>
+        <h3>Add a date/time to your available schedule</h3>
+        <p>Use the calender and time picker to add a date/time to your
+          availability so other users can know when you are available</p>
+      </section>
+      <section class='buddy-card col'>
+        <form id='add-schedule'>
+          <fieldset>
+            <table>
+              <tr>
+                <div class='input-group date' id='date-picker'>
+                  <input
+                    type='text'
+                    class='form-control'
+                    value='01/02/2023'
+                    id='date'
+                  />
+                  <span class='input-group-append'>
+                    <span class='input-group-text bg-light d-block'>
+                      <i class='fa fa-calendar'></i>
+                    </span>
                   </span>
-                </span>
-              </div>
-            </div>
-          </div>
-          <tr>
-            <input
-              type='time'
-              class='form-control'
-              id='time'
-              value='00:00'
-            />
-          </tr>
-          <tr>
-            <td colspan='2'><input type='submit' id='submitButton' class="btn btn-grad"/></td>
-          </tr>
-        </table>
-      </fieldset>
-    </form>
-  </section>
-  <section class='row buddy-card'>
-    <h2 class='text-center'><u>Your available times</u></h2>
+                </div>
+              </tr>
+              <tr>
+                <input
+                  type='time'
+                  class='form-control'
+                  id='time'
+                  value='00:00'
+                />
+              </tr>
+              <tr>
+                <td><input
+                    type='submit'
+                    id='submitButton'
+                    class='btn btn-grad'
+                  /></td>
+              </tr>
+            </table>
+          </fieldset>
+        </form>
+      </section>
+    </article>
+  {{/if}}
+  <article class='row buddy-card'>
+    <h2 class='text-center'><u>{{userData.username}}'s available times</u></h2>
     <ul class='schedule container'>
       {{#each scheduleData}}
         <li class='buddy-card'>
-          <h3>Date: {{date}}</h3>
-          <h3>Time: {{time}}</h3>
+          <h3>{{date}}</h3>
         </li>
       {{/each}}
     </ul>
-  </section>
+  </article>
 </article>
 
 {{#section 'script'}}
@@ -73,6 +82,11 @@
   <script
     src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js'
   ></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.2.1/luxon.min.js" integrity="sha512-pyR2hpC7bLig9Ub4eUIOC/BAO4anpdt7jhpF4dfrPv+qIg+KWztdVjFPCRCsRaWVfUylUCvrrxqMFNrJBdQIjQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script
+    src='https://cdnjs.cloudflare.com/ajax/libs/luxon/3.2.1/luxon.min.js'
+    integrity='sha512-pyR2hpC7bLig9Ub4eUIOC/BAO4anpdt7jhpF4dfrPv+qIg+KWztdVjFPCRCsRaWVfUylUCvrrxqMFNrJBdQIjQ=='
+    crossorigin='anonymous'
+    referrerpolicy='no-referrer'
+  ></script>
   <script src='/js/profile.js'></script>
 {{/section}}

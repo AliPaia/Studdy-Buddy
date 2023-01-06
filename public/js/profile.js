@@ -1,5 +1,5 @@
 const DateTime = luxon.DateTime;
-const scheduleEl = document.querySelector('#add-schedule')
+const scheduleEl = document.querySelector('#add-schedule');
 
 // calender
 $(function () {
@@ -21,9 +21,9 @@ async function grabDate(event) {
     day: date[1],
     year: date[2],
     hour: time[0],
-    minute: time[1]
-  }
-  const dt = DateTime.fromObject(dateObj)
+    minute: time[1],
+  };
+  const dt = DateTime.fromObject(dateObj);
 
   await fetch('/api/schedules', {
     method: 'POST',
@@ -40,7 +40,7 @@ async function grabDate(event) {
 
   const scheduleData = await response.json();
   console.log(scheduleData[0].date);
-  console.log(DateTime.fromISO(scheduleData[0].date))
+  console.log(DateTime.fromISO(scheduleData[0].date));
   document.location.reload();
 }
 

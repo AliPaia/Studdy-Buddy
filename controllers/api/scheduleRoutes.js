@@ -1,13 +1,13 @@
 const router = require('express').Router();
 const withAuth = require('../../utils/auth');
-const { User, Schedule } = require('../../models');
+const { Schedule } = require('../../models');
 
 router.get('/', async (req, res) => {
   try {
-    const scheduleData = await Schedule.findAll()
-    res.json(scheduleData)
+    const scheduleData = await Schedule.findAll();
+    res.json(scheduleData);
   } catch (err) {
-    res.status(500).json(err)
+    res.status(500).json(err);
   }
 });
 
