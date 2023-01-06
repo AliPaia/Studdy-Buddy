@@ -89,8 +89,10 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/profile', withAuth, (req, res) => {
-  res.render('profile', { loggedIn: req.session.loggedIn });
+router.get('/profile', withAuth, async (req, res) => {
+  const { loggedIn, userId } = req.session;
+  const userData = await User.findByPk(userId, { raw: true });
+  res.render('profile', { loggedIn, userData });
 });
 
 router.get('/user/:username', async (req, res) => {

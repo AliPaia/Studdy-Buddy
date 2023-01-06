@@ -14,7 +14,6 @@ Availability.init(
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      //unique: true,
       references: {
         model: 'user',
         key: 'id',
@@ -34,7 +33,7 @@ Availability.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'Availability',
+    modelName: 'availability',
   }
 );
 

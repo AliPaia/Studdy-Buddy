@@ -7,7 +7,7 @@
 // });
 
 $(function () {
-  $('#datepicker').datepicker({
+  $('#date-picker').datepicker({
     onSelect: function () {
       var date = $(this).datepicker('getDate');
       console.log(date);
