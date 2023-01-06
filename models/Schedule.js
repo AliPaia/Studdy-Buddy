@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Availability extends Model {}
+class Schedule extends Model {}
 
-Availability.init(
+Schedule.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -33,8 +33,8 @@ Availability.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'availability',
+    modelName: 'schedule',
   }
 );
 
-module.exports = Availability;
+module.exports = Schedule;

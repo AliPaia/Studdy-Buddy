@@ -27,7 +27,7 @@ async function grabDate(event) {
   var time = document.getElementById('time').value;
   console.log(date);
   console.log(time);
-  await fetch(`/api/availability`, {
+  await fetch(`/api/schedule`, {
     method: 'POST',
     body: JSON.stringify({
       date: date,
@@ -36,7 +36,7 @@ async function grabDate(event) {
     headers: { 'Content-Type': 'application/json' },
   });
 
-  //document.location.replace('/dashboard');
+  //document.location.replace('/profile');
 }
 
 document.querySelector('#demoForm').addEventListener('submit', grabDate);

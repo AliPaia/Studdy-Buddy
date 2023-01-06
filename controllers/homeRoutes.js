@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const withAuth = require('../utils/auth');
 const { searchChat } = require('../utils/query');
-const { User, Score, Chat, Availability } = require('../models');
+const { User, Score, Chat, Schedule } = require('../models');
 
 router.get('/', async (req, res) => {
   const { loggedIn, userId } = req.session;
@@ -92,7 +92,8 @@ router.get('/login', (req, res) => {
 router.get('/profile', withAuth, async (req, res) => {
   const { loggedIn, userId } = req.session;
   const userData = await User.findByPk(userId, { raw: true });
-  res.render('profile', { loggedIn, userData });
+  const schedule = await Schedule.findAll({ where: { userId }, raw: true });
+  res.render('profile', { loggedIn, userData, schedule });
 });
 
 router.get('/user/:username', async (req, res) => {
