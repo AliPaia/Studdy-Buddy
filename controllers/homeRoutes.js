@@ -92,7 +92,11 @@ router.get('/login', (req, res) => {
 router.get('/profile', withAuth, async (req, res) => {
   const { loggedIn, userId } = req.session;
   const userData = await User.findByPk(userId, { raw: true });
-  const schedule = await Schedule.findAll({ where: { userId }, raw: true });
+  const schedule = await Schedule.findAll({
+    where: { userId },
+    order: [['date', 'DESC']],
+    raw: true,
+  });
   res.render('profile', { loggedIn, userData, schedule });
 });
 

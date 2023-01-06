@@ -11,6 +11,10 @@ Schedule.init(
       primaryKey: true,
       autoIncrement: true,
     },
+    date: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -18,14 +22,6 @@ Schedule.init(
         model: 'user',
         key: 'id',
       },
-    },
-    date: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    time: {
-      type: DataTypes.STRING,
-      allowNull: false,
     },
   },
   {

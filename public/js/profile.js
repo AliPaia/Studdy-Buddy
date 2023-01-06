@@ -36,7 +36,7 @@ async function grabDate(event) {
     headers: { 'Content-Type': 'application/json' },
   });
 
-  //document.location.replace('/profile');
+  document.location.reload();
 }
 
-document.querySelector('#demoForm').addEventListener('submit', grabDate);
+document.querySelector('#add-schedule').addEventListener('submit', grabDate);
