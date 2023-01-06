@@ -57,7 +57,7 @@ createAccountBtn.addEventListener('click', async function (event) {
   });
 
   if (response.ok) {
-    document.location.replace('/assessment');
+    document.location.replace('/');
   } else {
     const [error] = (await response.json()).errors;
     const { validatorKey } = error;

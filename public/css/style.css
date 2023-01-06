@@ -140,7 +140,6 @@ header {
 .Nameheader {
   justify-content: right;
   width: 50rem;
-
 }
 
 @media screen and (max-width: 500px) {
@@ -162,11 +161,11 @@ header {
 }
 
 /*Assessment Styling*/
-.score-card{
+.score-card {
   justify-content: center;
   text-align: center;
 }
 
-#update-btn{
+#update-btn {
   margin-top: 10px;
 }
