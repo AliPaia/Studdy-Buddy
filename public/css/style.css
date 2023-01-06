@@ -43,7 +43,9 @@ body {
   justify-content: center;
 }
 
-#buddy-card {
+/* chat css */
+
+#buddy-window {
   margin-bottom: 5px;
   border: var(--border-styles);
 }
@@ -144,24 +146,6 @@ body {
   width: 50rem;
 }
 
-@media screen and (max-width: 500px) {
-  .btn-grad {
-    padding: 0;
-  }
-}
-
-@media screen and (min-width: 500px) {
-  .btn-grad {
-    padding: 15px 30px;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .btn-grad {
-    padding: 15px 45px;
-  }
-}
-
 /*Assessment Styling*/
 .score-card {
   justify-content: center;
@@ -183,4 +167,39 @@ body {
 .schedule li {
   width: 40%;
   list-style: none;
+}
+
+/* login */
+
+#create-login {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  border: var(--border-styles);
+  margin: auto;
+  max-width: 1000px;
+}
+
+@media screen and (max-width: 500px) {
+  .btn-grad {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 1005px) {
+  #create-login {
+    margin: 5px;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .btn-grad {
+    padding: 15px 30px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .btn-grad {
+    padding: 15px 45px;
+  }
 }
