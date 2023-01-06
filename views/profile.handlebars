@@ -9,76 +9,59 @@
   />
 {{/section}}
 
-<div class='container'>
-  <div class='row name-header'>
-    <div class='col-sm-6 offset-sm-1'>
-      <div class='card'>
-        <div class='card-body'>
-          <h5 class='card-title'>{{userData.username}}</h5>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class='row'>
-    <div
-      class='card border-primary mb-3 offset-sm-2 Schedule'
-      style='max-width: 50rem; min-height: 400px;'
-    >
-      <div class='card-header'>Schedule</div>
-      <div class='card-body text-primary'>
-        <form id='demoForm'>
-          <fieldset>
-            <legend>Please pick your schedule</legend>
-            <table id='regDetails'>
-              <div class='row'>
-                <div class='col-5'>
-                  <div class='input-group date' id='date-picker'>
-                    <input
-                      type='text'
-                      class='form-control'
-                      value='01/02/2023'
-                      id='date'
-                    />
-                    <span class='input-group-append'>
-                      <span class='input-group-text bg-light d-block'>
-                        <i class='fa fa-calendar'></i>
-                      </span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <tr>
+<article class='container'>
+  <section class='row buddy-card text-center'>
+    <h2>User {{userData.username}}'s Profile</h2>
+  </section>
+  <section class='row buddy-card'>
+    <form id='add-schedule'>
+      <fieldset>
+        <legend>Add a date to your available schedule</legend>
+        <table>
+          <div class='row'>
+            <div class='col-5'>
+              <div class='input-group date' id='date-picker'>
                 <input
-                  type='time'
+                  type='text'
                   class='form-control'
-                  id='time'
-                  value='10:05 AM'
+                  value='01/02/2023'
+                  id='date'
                 />
-              </tr>
-              <tr>
-                <td colspan='2'><input type='submit' id='submitButton' /></td>
-              </tr>
-            </table>
-          </fieldset>
-        </form>
-        <p class='card-text'>Please add the days of the week and hours that you
-          are available.</p>
-      </div>
-      <ul class='list-group'>
-        {{#each schedule}}
-          <li class='list-group-item time-row'>
-            <h3>date:</h3>
-            <h3>{{date}}</h3>
-            <h3>time:</h3>
-            <h3>{{time}}</h3>
-          </li>
-        {{/each}}
-      </ul>
-    </div>
-
-  </div>
-
-</div>
+                <span class='input-group-append'>
+                  <span class='input-group-text bg-light d-block'>
+                    <i class='fa fa-calendar'></i>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <tr>
+            <input
+              type='time'
+              class='form-control'
+              id='time'
+              value='10:05 AM'
+            />
+          </tr>
+          <tr>
+            <td colspan='2'><input type='submit' id='submitButton' /></td>
+          </tr>
+        </table>
+      </fieldset>
+    </form>
+  </section>
+  <section class='row buddy-card'>
+    <h2 class='text-center'><u>Your available times</u></h2>
+    <ul class='schedule container'>
+      {{#each schedule}}
+        <li class='buddy-card'>
+          <h3>Date: {{date}}</h3>
+          <h3>Time: {{time}}</h3>
+        </li>
+      {{/each}}
+    </ul>
+  </section>
+</article>
 
 {{#section 'script'}}
   <script
