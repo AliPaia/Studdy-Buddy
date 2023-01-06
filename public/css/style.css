@@ -19,7 +19,7 @@ h2 {
 
 body {
   margin: 0;
-  font-family: sans-serif;
+  font-family: 'Trebuchet MS', sans-serif;
   background: var(--pencil-yellow);
 }
 
@@ -159,4 +159,14 @@ header {
   .btn-grad {
     padding: 15px 45px;
   }
+}
+
+/*Assessment Styling*/
+.score-card{
+  justify-content: center;
+  text-align: center;
+}
+
+#update-btn{
+  margin-top: 10px;
 }
