@@ -2,81 +2,56 @@
 
 :root {
   --primary-color: #06283d;
-  --secondary-color: #256d85;
+  --secondary-color: #c0c0c0;
   --tertiary-color: #47b5ff;
   --quaternary-color: #dff6ff;
-  --pencil-yellow: #edb560;
-  --pencil-pink: #dbb7bb;
+  --pencil-yellow: #f5c000;
+  --pencil-pink: #f4aeb6;
   --pencil-silver: #e2e2e3;
-  --border-styles: 5px solid var(--secondary-color);
+  --border-styles: 4.5px solid var(--secondary-color);
   --bs-card-bg: #06283d;
+  --boxes: rgba(255, 248, 225, 0.363);
 }
 
 h1,
-h2,
-h3 {
-  color: var(--secondary-color);
+h2 {
+  font-weight: 100;
+  color: black;
 }
 
 body {
-  margin: 0;
-  font-family: 'Trebuchet MS', sans-serif;
+  font-family: 'Verdana', 'Trebuchet MS', sans-serif;
   background: var(--pencil-yellow);
 }
 
-.buddy-card {
-  margin: 5px;
-  padding: 5px;
-  border: var(--border-styles);
-  background: var(--pencil-pink);
+header {
+  border-radius: 5px;
 }
 
-.mb-4 {
-  display: flex;
-  justify-content: right;
-  width: 100%;
+/*Navigation bar styling*/
+.nav {
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: var(--pencil-pink);
+  border-bottom: var(--border-styles);
 }
 
 #nav-btn {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-}
-
-.btn-grad {
-  background-image: linear-gradient(
-    to right,
-    #4cb8c4 0%,
-    #3cd3ad 51%,
-    #4cb8c4 100%
-  );
-  margin: 10px;
-  padding: 15px 45px;
-  text-align: center;
-  text-transform: uppercase;
-  transition: 0.5s;
-  background-size: 200% auto;
   color: white;
-  box-shadow: 0 0 20px #eee;
-  border-radius: 10px;
 }
 
-.btn-grad:hover {
-  background-position: right center;
-  /* change the direction of the change here */
-  color: #fff;
-  text-decoration: none;
+#nav-logo {
+  max-width: 300px;
 }
 
-/* homepage */
-
-#join-room table {
-  border: var(--border-styles);
-  background-color: var(--pencil-silver);
+/* Chat css */
+.mb-4 {
+  display: flex;
+  justify-content: right;
+  width: 100%;
 }
-
-/* chat css */
-
 #buddy-window {
   margin-bottom: 5px;
   border: var(--border-styles);
@@ -148,18 +123,33 @@ body {
   background: var(--pencil-pink);
 }
 
-/*Assessment Styling*/
-.score-card {
-  justify-content: center;
+/*Button styling*/
+.btn-grad {
+  background-image: linear-gradient(
+    to right,
+    #4cb8c4 0%,
+    #3cd3ad 51%,
+    #4cb8c4 100%
+  );
+  margin: 10px;
+  padding: 15px 45px;
   text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
 }
 
-#update-btn {
-  margin-top: 10px;
+.btn-grad:hover {
+  background-position: right center;
+  /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
 }
 
 /* Profile */
-
 .schedule {
   display: flex;
   flex-wrap: wrap;
@@ -172,6 +162,35 @@ body {
 }
 
 /* login */
+.signup {
+  margin-top: 50px;
+  border-radius: 5px;
+  background-color: var(--boxes);
+  padding: 50px;
+  max-width: 450px;
+}
+
+#create-account {
+  margin-bottom: 20px;
+}
+
+.username {
+  margin-bottom: 10px;
+}
+
+.password {
+  margin-bottom: 10px;
+}
+
+#signup-text {
+  color: white;
+  font-style: italic;
+  font-size: 20px;
+}
+
+.signup-images {
+  margin-top: 20px;
+}
 
 #create-login {
   display: flex;
@@ -204,4 +223,57 @@ body {
   .btn-grad {
     padding: 15px 45px;
   }
+}
+
+/*Homepage styling*/
+#studying-img {
+  max-height: 400px;
+  justify-content: start;
+  padding-right: 100px;
+}
+
+#studying-logo {
+  max-width: 350px;
+  justify-content: flex-end;
+}
+
+.cover {
+  flex-direction: row;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  box-shadow: 0px 0px 10px 1px;
+  background-color: var(--boxes);
+}
+
+#welcome {
+  color: white;
+  font-weight: 10px;
+  font-size: 100px;
+}
+
+#homepage-text {
+  font-size: 17px;
+  color: white;
+  padding: 30px;
+  line-height: 35px;
+}
+.main {
+  margin-top: 20px;
+}
+
+#join-room table {
+  border: black;
+  background-color: var(--boxes);
+}
+
+/*Assessment Styling*/
+.score-card {
+  justify-content: center;
+  text-align: center;
+}
+
+#update-btn {
+  margin-top: 10px;
 }
