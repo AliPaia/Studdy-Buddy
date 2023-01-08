@@ -61,13 +61,14 @@
     </section>
   </article>
   {{! second user information }}
-  <section id='buddy-card' class='container text-center'>
+  <section id='buddy-window' class='container text-center'>
     <section class='text-center'>
       <h2>Currently Connected Buddy:
         <a
           href='/user/{{chatData.username}}'
           id='buddy'
           data-user-id='{{chatData.userId}}'
+          target="_blank"
         >{{chatData.username}}</a>
       </h2>
       <h2>Studdy Buddy Subject:

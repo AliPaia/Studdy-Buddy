@@ -1,13 +1,10 @@
-// $(document).ready( function() {
-// var templateSource = $("#details-template").html();
-// var template = Handlebars.compile(templateSource);
-//     $('#submitButton').click(function(){
-//             $("#detailsBox").html(template({"nameValue":$('#nameInput').val(), "ageValue":$('#ageInput').val()}));
-//     });
-// });
+const DateTime = luxon.DateTime;
+const scheduleEl = document.querySelector('#add-schedule');
+const scheduleArr = document.querySelectorAll('.schedule-slot');
 
+// calender
 $(function () {
-  $('#datepicker').datepicker({
+  $('#date-picker').datepicker({
     onSelect: function () {
       var date = $(this).datepicker('getDate');
       console.log(date);
@@ -15,28 +12,49 @@ $(function () {
   });
 });
 
-document.getElementById('date');
-
-//var date=$("#date").datepicker("getDate").val()
-//var date=dateEl.value
-//console.log(dateEl)
-
+// submit schedule
 async function grabDate(event) {
   event.preventDefault();
-  var date = document.getElementById('date').value;
-  var time = document.getElementById('time').value;
-  console.log(date);
-  console.log(time);
-  await fetch(`/api/availability`, {
+  const date = document.getElementById('date').value.split('/');
+  const time = document.getElementById('time').value.split(':');
+  const dateObj = {
+    month: date[0],
+    day: date[1],
+    year: date[2],
+    hour: time[0],
+    minute: time[1],
+  };
+  const dt = DateTime.fromObject(dateObj);
+
+  const response = await fetch('/api/schedules', {
     method: 'POST',
     body: JSON.stringify({
-      date: date,
-      time: time,
+      date: dt,
     }),
     headers: { 'Content-Type': 'application/json' },
   });
 
-  //document.location.replace('/dashboard');
+  if (response.ok) {
+    document.location.reload();
+  }
 }
 
-document.querySelector('#demoForm').addEventListener('submit', grabDate);
+const deleteSchedule = async (event) => {
+  event.preventDefault();
+  const { id } = event.target.dataset;
+
+  const response = await fetch('api/schedules/' + id, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+  if (response.ok) {
+    document.location.reload();
+  }
+};
+
+scheduleEl.addEventListener('submit', grabDate);
+scheduleEl.querySelector('#date').value = DateTime.now().toFormat('LL/dd/yyyy');
+scheduleArr.forEach((schedule) => {
+  schedule.querySelector('button').addEventListener('click', deleteSchedule);
+});

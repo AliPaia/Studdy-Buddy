@@ -13,7 +13,8 @@
 }
 
 h1,
-h2 {
+h2,
+h3 {
   color: var(--secondary-color);
 }
 
@@ -23,8 +24,9 @@ body {
   background: var(--pencil-yellow);
 }
 
-header {
+.buddy-card {
   margin: 5px;
+  padding: 5px;
   border: var(--border-styles);
   background: var(--pencil-pink);
 }
@@ -41,7 +43,41 @@ header {
   justify-content: center;
 }
 
-#buddy-card {
+.btn-grad {
+  background-image: linear-gradient(
+    to right,
+    #4cb8c4 0%,
+    #3cd3ad 51%,
+    #4cb8c4 100%
+  );
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+}
+
+.btn-grad:hover {
+  background-position: right center;
+  /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+/* homepage */
+
+#join-room table {
+  border: var(--border-styles);
+  background-color: var(--pencil-silver);
+}
+
+/* chat css */
+
+#buddy-window {
   margin-bottom: 5px;
   border: var(--border-styles);
 }
@@ -112,39 +148,49 @@ header {
   background: var(--pencil-pink);
 }
 
-.btn-grad {
-  background-image: linear-gradient(
-    to right,
-    #4cb8c4 0%,
-    #3cd3ad 51%,
-    #4cb8c4 100%
-  );
-  margin: 10px;
-  padding: 15px 45px;
+/*Assessment Styling*/
+.score-card {
+  justify-content: center;
   text-align: center;
-  text-transform: uppercase;
-  transition: 0.5s;
-  background-size: 200% auto;
-  color: white;
-  box-shadow: 0 0 20px #eee;
-  border-radius: 10px;
 }
 
-.btn-grad:hover {
-  background-position: right center;
-  /* change the direction of the change here */
-  color: #fff;
-  text-decoration: none;
+#update-btn {
+  margin-top: 10px;
 }
 
-.Nameheader {
-  justify-content: right;
-  width: 50rem;
+/* Profile */
+
+.schedule {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.schedule li {
+  width: 40%;
+  list-style: none;
+}
+
+/* login */
+
+#create-login {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  border: var(--border-styles);
+  margin: auto;
+  max-width: 1000px;
 }
 
 @media screen and (max-width: 500px) {
   .btn-grad {
     padding: 0;
+  }
+}
+
+@media screen and (max-width: 1005px) {
+  #create-login {
+    margin: 5px;
   }
 }
 
@@ -158,14 +204,4 @@ header {
   .btn-grad {
     padding: 15px 45px;
   }
-}
-
-/*Assessment Styling*/
-.score-card {
-  justify-content: center;
-  text-align: center;
-}
-
-#update-btn {
-  margin-top: 10px;
 }
