@@ -12,6 +12,7 @@
 <iframe name='dummyframe' id='dummyframe' style='display: none;'></iframe>
 <form action='/api/scores' target='dummyframe' method='post'>
   <div class='container score-card'>
+    <section id='updated-message'></section>
     <p>Vanilla JS- functions, looping, scope, es6 syntax etc</p>
     <section class='form-check form-check-inline'>
       <input
@@ -279,7 +280,15 @@
 
     <!--Submit button-->
     <section><input
+        id='submit-btn'
         type='submit'
         value='Update'
         class='btn btn-grad'
-      /></section></div></form>
+      />
+    </section>
+  </div>
+</form>
+
+{{#section 'script'}}
+  <script src='/js/assessment.js'></script>
+{{/section}}
