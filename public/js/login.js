@@ -1,4 +1,4 @@
-const profileLoginBtn = document.getElementById('profile-login');
+const homepageLoginBtn = document.getElementById('homepage-login');
 const createAccountBtn = document.getElementById('create-account');
 const errorWarningEl = document.querySelector('#error-warning');
 const tooltipTrigger = document.querySelector('[data-bs-toggle="tooltip"]');
@@ -14,7 +14,7 @@ const showAlert = (message) => {
   errorWarningEl.append(alertEl);
 };
 
-profileLoginBtn.addEventListener('click', async function (event) {
+homepageLoginBtn.addEventListener('click', async function (event) {
   event.preventDefault();
   const usernameInput = document.getElementById('username').value;
   const passwordInput = document.getElementById('password').value;
@@ -32,7 +32,7 @@ profileLoginBtn.addEventListener('click', async function (event) {
   });
 
   if (response.ok) {
-    document.location.replace('/profile');
+    document.location.replace('/');
   } else {
     const { message } = await response.json();
     showAlert(message);
