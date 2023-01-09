@@ -16,17 +16,17 @@
   </head>
 
   <body>
-    <header class='buddy-card'>
-      <nav class='container text-center'>
-        <h1>Studdy Buddy</h1>
-        <section id='nav-btn' class='container'>
-          <a class='btn btn-grad' href='/'>Home</a>
+    <header>
+      <nav class='nav'>
+        <img id='nav-logo' src='./images/nav-logo.png' />
+        <section id='nav-btn text-center'>
+          <a class='btn' href='/'>Home</a>
           {{#if loggedIn}}
-            <a class='btn btn-grad' href='/profile'>My Profile</a>
-            <a class='btn btn-grad' href='/assessment'>Update assessments</a>
-            <button id='logout-btn' class='btn btn-grad'>Logout</button>
+            <a class='btn' href='/profile'>My Profile</a>
+            <a class='btn' href='/assessment'>Update assessments</a>
+            <button id='logout-btn' class='btn'>Logout</button>
           {{else}}
-            <a class='btn btn-grad' href='/login'>Login Page</a>
+            <a class='btn' href='/login'>Login Page</a>
           {{/if}}
         </section>
       </nav>
