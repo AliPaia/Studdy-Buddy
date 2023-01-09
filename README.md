@@ -10,7 +10,7 @@
 7. [Acceptance Criteria](#acceptance-criteria)
 8. [Project Outline](#project-outline)
 9. [Wireframe](#wireframe)
-10. [Video Preview of Web Application](#video-preview-of-web-application)
+10. [Preview of Web Application](#video-preview-of-web-application)
 11. [Technology](#technology)
 12. [Contribution](#contribution)
 13. [Source](#source)
@@ -22,11 +22,8 @@
 ### *Studdy Buddy*
 
 ## Description :
-* This is a group project created using Handlebars, CSS, and APIs
-* The frontend also uses Bootstrap for styling
-<!-- * The backend uses  -->
-* Studdy Buddy is an application that pairs users looking to partner with a peer to work through a selected course topic, based on how they match up via a self ranking system
-<!-- Review section and add any other notable details -->
+* This is a group project created using Handlebars, CSS, Javascript, Bootstrap, Express, Handlebars, Sequelize, and Bcrypt
+* Studdy Buddy is an application that pairs users looking to partner with a peer to work through a selected course topic, based on how they match up via a self ranking system.
 
 
 ## Working :
@@ -75,16 +72,21 @@ As a student, I want to be paired with a study partner to work together on a top
 ## Wireframe :
 [Link to Wireframe](https://www.figma.com/file/ecH6V9VV64Y8h0Zg77uk92/Untitled?node-id=0%3A1&t=cGEf3qLriIdzacSN-1)
 
-## Video Preview of Web Application :
-<!-- Record and upload a walk-through video -->
+## Preview of Web Application :
+![Alt text](./public/images/Screenshot%202023-01-08%20at%208.24.56%20PM.png)
 
 
 ## Technology :
-<img src="https://th.bing.com/th/id/OIP.pqcPskVdTrJqfhZ-Z49AtQHaHn?w=170&h=180&c=7&r=0&o=5&pid=1.7" width="100" height="100"> 
+ <img src="https://th.bing.com/th/id/OIP.pqcPskVdTrJqfhZ-Z49AtQHaHn?w=170&h=180&c=7&r=0&o=5&pid=1.7" width="100" height="100"> 
 <img src="https://th.bing.com/th/id/OIP.R1E9EGEO11Qn7XMvQjX4AAHaDt?w=339&h=174&c=7&r=0&o=5&pid=1.7" width="100" height="100">
 <img src="https://www.clipartmax.com/png/small/147-1474351_javascript-icon.png" width="100" height="100">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEfZ43wDjP6ZmPt9W_rPP1dRwDqOcfv9CdArew5kywPYG-8IPKsCdU&usqp=CAU" width="100" height="100">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2Ot35ezBtUIU6VCf7q0qUniU6MLknlIjc-g&usqp=CAU" width="100" height="100">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcOTaBv6Pk2ej7l71iPB2LlwzfUofio8qRL-O0rJrsDQ&s" width="100" height="100">
+<img src="https://miro.medium.com/max/1400/1*_SmZzhgGpZ5tHeUM8toUWQ.jpeg" width="100" height="100">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLHEUJTRdLY3ZoTgdflYcNNNVxjvbgHauq6w&usqp=CAU" width="100" height="100">
 <!-- Add the remaining technology we would like to note was used -->
-  
+
 
 ## Contribution :
 - Amauri Rodriguez - Home Page and Chat Page (structure, style, and functionality)
