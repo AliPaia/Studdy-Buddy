@@ -5,7 +5,7 @@
   --secondary-color: #c0c0c0;
   --tertiary-color: #47b5ff;
   --quaternary-color: #dff6ff;
-  --pencil-yellow: #f5c000;
+  --pencil-yellow: #edb560;
   --pencil-pink: #f4aeb6;
   --pencil-silver: #e2e2e3;
   --border-styles: 4.5px solid var(--secondary-color);
@@ -161,6 +161,13 @@ header {
   list-style: none;
 }
 
+.buddy-card {
+  margin: 20px;
+  padding: 5px;
+  background: var(--boxes);
+  border-radius: 5px;
+}
+
 /* login */
 .signup {
   margin-top: 50px;
@@ -170,7 +177,7 @@ header {
   max-width: 450px;
 }
 
-#create-account {
+#create-account-window {
   margin-bottom: 20px;
 }
 
@@ -272,8 +279,17 @@ header {
 .score-card {
   justify-content: center;
   text-align: center;
+  background-color: var(--boxes);
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 600px;
 }
 
 #update-btn {
   margin-top: 10px;
+}
+
+.assessment-title {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
