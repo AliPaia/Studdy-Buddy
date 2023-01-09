@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Schedule extends Model {}
+class Availability extends Model {}
 
-Schedule.init(
+Availability.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,18 +11,22 @@ Schedule.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      //unique: true,
       references: {
         model: 'user',
         key: 'id',
       },
+    },
+    date: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    time: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
   },
   {
@@ -30,8 +34,8 @@ Schedule.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'schedule',
+    modelName: 'Availability',
   }
 );
 
-module.exports = Schedule;
+module.exports = Availability;
