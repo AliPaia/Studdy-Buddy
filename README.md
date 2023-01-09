@@ -35,10 +35,10 @@
 * "Logout" button allows user to leave the chat conversation and/or to logout of the application
 
 ## Usage :
-* Open the intial interface deployed through Heroku
+* Open the initial interface deployed through Heroku
 * The user can then create an account in the login page by completing the username and password fields
 * They'll complete a self-assessment, ranking their confidence level among the listed course topics
-* They'll click "find a buddy" to be paired with a peer who is ranked above them in the selected topic, to provide sufficent thought-partnering support
+* They'll click "find a buddy" to be paired with a peer who is ranked above them in the selected topic, to provide sufficient thought-partnering support
 * They can click "help a buddy" to be put in a queue that will match them with someone who is looking for a buddy
 * When there is a match they will be automatically moved into a chat conversation to start working with their partner
 * They can click "logout" once they would like to leave the conversation
@@ -73,7 +73,7 @@ As a student, I want to be paired with a study partner to work together on a top
 [Link to Wireframe](https://www.figma.com/file/ecH6V9VV64Y8h0Zg77uk92/Untitled?node-id=0%3A1&t=cGEf3qLriIdzacSN-1)
 
 ## Preview of Web Application :
-![Alt text](./public/images/Screenshot%202023-01-08%20at%208.24.56%20PM.png)
+![Project Preview](./assets/images/project-preview.png)
 
 
 ## Technology :
@@ -95,5 +95,4 @@ As a student, I want to be paired with a study partner to work together on a top
 - Alison Paia - Login Page (structure, style, and functionality)
 
 ## Source :
-<!-- - github_link
-- deployed link -->
+[Deployed application Link](https://studdy-buddy.herokuapp.com/)
