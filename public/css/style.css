@@ -54,7 +54,9 @@ header {
 }
 #buddy-window {
   margin-bottom: 5px;
-  border: var(--border-styles);
+  margin-top: 20px;
+  background-color: var(--boxes);
+  border-radius: 5px;
 }
 
 #chat-window {
@@ -63,7 +65,7 @@ header {
   flex-wrap: wrap;
   padding: 0;
   height: 500px;
-  border: var(--border-styles);
+  background-color: var(--boxes);
 }
 
 #chat-window .messages {
@@ -97,12 +99,12 @@ header {
   outline: 0;
   margin-right: 0.5rem;
   border-radius: 0.25rem;
-  background: #ccc;
+  background: white;
 }
 
 #chat-window form button {
   width: 6rem;
-  background-color: #1b8c00;
+  background-color: var(--tertiary-color);
   color: white;
   border: none;
   padding: 0.5rem;
@@ -112,11 +114,11 @@ header {
 }
 
 #chat-window form button:hover {
-  background-color: #166d01;
+  background-color: var(--pencil-pink);
 }
 
 #chat-window .messages li.self {
-  background: var(--pencil-silver);
+  background: white;
 }
 
 #chat-window .messages li.buddy {
