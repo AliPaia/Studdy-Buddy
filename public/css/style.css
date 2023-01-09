@@ -150,22 +150,9 @@ header {
 }
 
 /* Profile */
-.schedule {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.schedule li {
-  width: 40%;
-  list-style: none;
-}
-
-.buddy-card {
-  margin: 20px;
-  padding: 5px;
-  background: var(--boxes);
-  border-radius: 5px;
+.Nameheader {
+  justify-content: right;
+  width: 50rem;
 }
 
 /* login */

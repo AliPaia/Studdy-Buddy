@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const withAuth = require('../utils/auth');
 const { searchChat } = require('../utils/query');
-const { User, Score, Chat, Schedule } = require('../models');
+const { User, Score, Chat, Availability } = require('../models');
 
 router.get('/', async (req, res) => {
   const { loggedIn, userId } = req.session;
@@ -89,34 +89,13 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/profile', withAuth, async (req, res) => {
-  const { loggedIn, userId } = req.session;
-  const userData = await User.findByPk(userId, { raw: true });
-  const scheduleData = await Schedule.findAll({
-    where: { userId },
-    order: [['date', 'ASC']],
-    raw: true,
-  });
-
-  res.render('profile', { loggedIn, userData, scheduleData, ownProfile: true });
+router.get('/profile', withAuth, (req, res) => {
+  res.render('profile', { loggedIn: req.session.loggedIn });
 });
 
 router.get('/user/:username', async (req, res) => {
-  const { loggedIn } = req.session;
   const { username } = req.params;
-  const userData = await User.findOne({ where: { username }, raw: true });
-  const scheduleData = await Schedule.findAll({
-    where: { userId: userData.id },
-    order: [['date', 'ASC']],
-    raw: true,
-  });
-
-  res.render('profile', {
-    loggedIn,
-    userData,
-    scheduleData,
-    ownProfile: false,
-  });
+  const userData = await User.findOne({ where: { username } });
+  res.render('profile', { userData });
 });
-
 module.exports = router;
